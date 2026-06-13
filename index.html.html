@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkBridge — Tu puente al primer empleo</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:     #0E1117;
+    --ink2:    #1C2130;
+    --ink3:    #2E3650;
+    --slate:   #8892A4;
+    --sky:     #E8F1FF;
+    --blue:    #2563EB;
+    --blue2:   #1D4ED8;
+    --cyan:    #06B6D4;
+    --amber:   #F59E0B;
+    --green:   #10B981;
+    --white:   #FFFFFF;
+    --off:     #F7F8FC;
+    --border:  #E2E6F0;
+    --r:       12px;
+    --rl:      20px;
+    --font-d:  'Fraunces', Georgia, serif;
+    --font-b:  'Plus Jakarta Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-b); background: var(--white); color: var(--ink); overflow-x: hidden; }
+
+  /* ─── UTILS ─── */
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 100px; }
+  .badge-blue { background: rgba(37,99,235,0.10); color: var(--blue); }
+  .badge-green { background: rgba(16,185,129,0.10); color: var(--green); }
+  .badge-amber { background: rgba(245,158,11,0.10); color: #D97706; }
+  .tag-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1160px; margin: 0 auto; padding: 0 32px;
+    height: 64px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--blue); display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .logo-mark svg { width: 20px; height: 20px; }
+  .logo-name { font-family: var(--font-d); font-size: 20px; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; }
+  .logo-name span { color: var(--blue); }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--slate); text-decoration: none; transition: color .2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-actions { display: flex; align-items: center; gap: 10px; }
+  .btn-ghost { font-size: 14px; font-weight: 600; color: var(--ink); background: none; border: 1.5px solid var(--border); border-radius: 100px; padding: 8px 20px; cursor: pointer; text-decoration: none; transition: all .2s; }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+  .btn-solid { font-size: 14px; font-weight: 700; color: var(--white); background: var(--blue); border: none; border-radius: 100px; padding: 9px 22px; cursor: pointer; text-decoration: none; transition: all .2s; display: inline-flex; align-items: center; gap: 6px; }
+  .btn-solid:hover { background: var(--blue2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(37,99,235,0.28); }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 140px 0 100px;
+    background: var(--off);
+    position: relative; overflow: hidden;
+  }
+  .hero-blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); opacity: 0.45; pointer-events: none;
+  }
+  .blob1 { width: 600px; height: 600px; background: #BFDBFE; top: -200px; right: -100px; }
+  .blob2 { width: 400px; height: 400px; background: #A7F3D0; bottom: -100px; left: -80px; }
+  .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 460px; gap: 60px; align-items: center; max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  .hero-eyebrow { margin-bottom: 20px; }
+  .hero-title {
+    font-family: var(--font-d);
+    font-size: clamp(44px, 5.5vw, 72px);
+    font-weight: 900; line-height: 1.0; letter-spacing: -2px;
+    color: var(--ink); margin-bottom: 22px;
+  }
+  .hero-title em { font-style: italic; color: var(--blue); }
+  .hero-title .underline-word { position: relative; display: inline-block; }
+  .hero-title .underline-word::after {
+    content: '';
+    position: absolute; left: 0; bottom: 2px; right: 0; height: 4px;
+    background: var(--cyan); border-radius: 2px; opacity: 0.6;
+  }
+  .hero-sub { font-size: 18px; font-weight: 400; color: var(--slate); line-height: 1.7; max-width: 480px; margin-bottom: 36px; }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+  .btn-hero { font-size: 16px; font-weight: 700; padding: 14px 30px; border-radius: 100px; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .25s; }
+  .btn-hero-primary { background: var(--blue); color: #fff; }
+  .btn-hero-primary:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(37,99,235,0.3); }
+  .btn-hero-secondary { background: var(--white); color: var(--ink); border: 1.5px solid var(--border); }
+  .btn-hero-secondary:hover { border-color: var(--blue); color: var(--blue); }
+  .hero-proof { display: flex; align-items: center; gap: 16px; }
+  .avatars { display: flex; }
+  .avatars .av { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #fff; margin-left: -8px; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .avatars .av:first-child { margin-left: 0; }
+  .proof-text { font-size: 13px; color: var(--slate); }
+  .proof-text strong { color: var(--ink); }
+
+  /* Hero card panel */
+  .hero-panel { position: relative; }
+  .hero-card-main {
+    background: var(--white); border-radius: var(--rl);
+    box-shadow: 0 20px 60px rgba(14,17,23,0.10), 0 4px 16px rgba(14,17,23,0.06);
+    padding: 24px; overflow: hidden;
+  }
+  .hc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .hc-title { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .hc-count { font-size: 12px; color: var(--slate); }
+  .job-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .job-row:last-child { border-bottom: none; }
+  .job-ico { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .job-info { flex: 1; min-width: 0; }
+  .job-name { font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .job-company { font-size: 12px; color: var(--slate); }
+  .job-meta { text-align: right; flex-shrink: 0; }
+  .job-salary { font-size: 13px; font-weight: 700; color: var(--blue); }
+  .job-dist { font-size: 11px; color: var(--slate); margin-top: 2px; }
+
+  .floating-card {
+    position: absolute; background: var(--white);
+    border-radius: var(--r); box-shadow: 0 8px 24px rgba(14,17,23,0.12);
+    padding: 12px 14px; display: flex; align-items: center; gap: 10px;
+  }
+  .fc-top { top: -20px; right: -16px; }
+  .fc-bot { bottom: -20px; left: -16px; }
+  .fc-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .fc-text { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .fc-sub { font-size: 11px; color: var(--slate); }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar { background: var(--ink); padding: 32px 0; }
+  .stats-inner { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+  .stat-item { text-align: center; border-right: 1px solid rgba(255,255,255,0.08); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: var(--font-d); font-size: 36px; font-weight: 900; color: var(--white); letter-spacing: -1px; line-height: 1; }
+  .stat-num span { color: var(--cyan); }
+  .stat-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+  /* ─── SECTION COMMONS ─── */
+  .section { padding: 100px 0; }
+  .section-alt { background: var(--off); }
+  .section-dark { background: var(--ink); }
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .section-tag { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+  .section-title { font-family: var(--font-d); font-size: clamp(32px, 4vw, 48px); font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; color: var(--ink); margin-bottom: 14px; }
+  .section-title-dark { color: var(--white); }
+  .section-sub { font-size: 17px; color: var(--slate); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+  .section-sub-dark { color: rgba(255,255,255,0.5); }
+
+  /* ─── HOW IT WORKS ─── */
+  .tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 52px; }
+  .tab { font-size: 14px; font-weight: 600; padding: 10px 24px; border-radius: 100px; border: 1.5px solid var(--border); background: var(--white); color: var(--slate); cursor: pointer; transition: all .2s; }
+  .tab.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+  .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+  .step-card {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: var(--rl); padding: 32px 28px;
+    position: relative; overflow: hidden; transition: border-color .3s, box-shadow .3s;
+  }
+  .step-card:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(37,99,235,0.10); }
+  .step-num-bg { position: absolute; top: -12px; right: 16px; font-family: var(--font-d); font-size: 80px; font-weight: 900; color: var(--off); line-height: 1; pointer-events: none; }
+  .step-icon-wrap { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 18px; }
+  .si-blue { background: rgba(37,99,235,0.10); }
+  .si-cyan { background: rgba(6,182,212,0.10); }
+  .si-green { background: rgba(16,185,129,0.10); }
+  .step-title { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+  .step-desc { font-size: 14px; color: var(--slate); line-height: 1.65; }
+
+  /* ─── FEATURES SPLIT ─── */
+  .features-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .features-split.reverse { direction: rtl; }
+  .features-split.reverse > * { direction: ltr; }
+  .feat-visual { border-radius: var(--rl); overflow: hidden; background: var(--off); border: 1.5px solid var(--border); }
+  .feat-screen { padding: 24px; }
+  .feat-bar { height: 36px; display: flex; align-items: center; gap: 6px; padding: 0 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+  .feat-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .feat-content-list { display: flex; flex-direction: column; gap: 10px; }
+  .feat-row { display: flex; align-items: center; gap: 10px; background: var(--white); border-radius: 10px; padding: 10px 12px; border: 1px solid var(--border); }
+  .feat-row-ico { font-size: 18px; }
+  .feat-row-info { flex: 1; }
+  .feat-row-title { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .feat-row-sub { font-size: 11px; color: var(--slate); }
+  .feat-row-tag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+  .feat-tag-blue { background: #DBEAFE; color: var(--blue); }
+  .feat-tag-green { background: #D1FAE5; color: #065F46; }
+  .feat-tag-amber { background: #FEF3C7; color: #92400E; }
+
+  .feat-label { font-family: var(--font-d); font-size: 12px; letter-spacing: 0.08em; font-weight: 700; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+  .feat-title { font-family: var(--font-d); font-size: clamp(28px, 3vw, 38px); font-weight: 900; letter-spacing: -1px; line-height: 1.15; color: var(--ink); margin-bottom: 16px; }
+  .feat-desc { font-size: 16px; color: var(--slate); line-height: 1.7; margin-bottom: 24px; }
+  .feat-list { display: flex; flex-direction: column; gap: 10px; }
+  .feat-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink); }
+  .feat-check { width: 20px; height: 20px; border-radius: 50%; background: rgba(16,185,129,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .feat-check::after { content: '✓'; font-size: 11px; color: var(--green); font-weight: 700; }
+
+  /* ─── CATEGORIES ─── */
+  .cats-wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .cat-card { display: flex; align-items: center; gap: 10px; background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; padding: 10px 18px; font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none; transition: all .2s; cursor: pointer; }
+  .cat-card:hover { border-color: var(--blue); color: var(--blue); background: rgba(37,99,235,0.04); }
+  .cat-card .emoji { font-size: 18px; }
+  .cat-count { font-size: 12px; color: var(--slate); background: var(--off); border-radius: 100px; padding: 1px 8px; }
+
+  /* ─── TESTIMONIALS ─── */
+  .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .test-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); border-radius: var(--rl); padding: 28px 24px; }
+  .test-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+  .test-star { color: var(--amber); font-size: 14px; }
+  .test-quote { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+  .test-author { display: flex; align-items: center; gap: 12px; }
+  .test-av { width: 40px; height: 40px; border-radius: 50%; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .test-name { font-size: 14px; font-weight: 700; color: var(--white); }
+  .test-role { font-size: 12px; color: rgba(255,255,255,0.45); }
+
+  /* ─── FOR COMPANIES ─── */
+  .company-section { background: linear-gradient(135deg, #EFF6FF 0%, #F0FDF4 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .company-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .company-panel { background: var(--white); border-radius: var(--rl); border: 1.5px solid var(--border); box-shadow: 0 12px 40px rgba(14,17,23,0.07); overflow: hidden; }
+  .cp-header { background: var(--ink); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .cp-title { font-size: 13px; font-weight: 600; color: var(--white); }
+  .cp-dot-row { display: flex; gap: 5px; }
+  .cp-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .cp-body { padding: 20px; }
+  .cp-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+  .cp-stat { background: var(--off); border-radius: var(--r); padding: 12px; text-align: center; }
+  .cp-stat-num { font-family: var(--font-d); font-size: 22px; font-weight: 900; color: var(--blue); }
+  .cp-stat-label { font-size: 11px; color: var(--slate); margin-top: 2px; }
+  .cp-candidates { display: flex; flex-direction: column; gap: 8px; }
+  .cp-cand { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--off); border-radius: 10px; }
+  .cp-cand-av { width: 32px; height: 32px; border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .cp-cand-name { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .cp-cand-dist { font-size: 11px; color: var(--slate); }
+  .cp-cand-status { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+  .st-nuevo { background: #DBEAFE; color: var(--blue); }
+  .st-visto { background: #FEF3C7; color: #92400E; }
+  .st-cont { background: #D1FAE5; color: #065F46; }
+
+  /* ─── PRICING ─── */
+  .price-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
+  .price-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--rl); padding: 32px 28px; position: relative; }
+  .price-card.popular { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(37,99,235,0.08); }
+  .popular-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--blue); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
+  .price-tier { font-size: 13px; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+  .price-num { font-family: var(--font-d); font-size: 46px; font-weight: 900; letter-spacing: -2px; color: var(--ink); line-height: 1; }
+  .price-period { font-size: 13px; color: var(--slate); margin-bottom: 24px; margin-top: 4px; }
+  .price-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 20px; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
+  .price-feat { font-size: 14px; color: var(--ink); display: flex; align-items: center; gap: 9px; }
+  .price-feat::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 12px; flex-shrink: 0; }
+  .price-feat.off { color: var(--slate); }
+  .price-feat.off::before { content: '–'; color: var(--border); }
+  .btn-price { width: 100%; padding: 13px; border-radius: 100px; font-family: var(--font-b); font-size: 14px; font-weight: 700; cursor: pointer; border: none; transition: all .2s; }
+  .btn-price-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+  .btn-price-outline:hover { border-color: var(--blue); color: var(--blue); }
+  .btn-price-fill { background: var(--blue); color: #fff; }
+  .btn-price-fill:hover { background: var(--blue2); box-shadow: 0 8px 24px rgba(37,99,235,0.25); }
+
+  /* ─── CTA FINAL ─── */
+  .cta-final { background: var(--ink); padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+  .cta-blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.2; }
+  .cta-blob1 { width: 500px; height: 500px; background: #3B82F6; top: -200px; left: -100px; }
+  .cta-blob2 { width: 400px; height: 400px; background: #06B6D4; bottom: -150px; right: -80px; }
+  .cta-content { position: relative; z-index: 1; }
+  .cta-title { font-family: var(--font-d); font-size: clamp(38px,5vw,64px); font-weight: 900; letter-spacing: -2px; line-height: 1.05; color: var(--white); margin-bottom: 16px; }
+  .cta-title em { font-style: italic; color: var(--cyan); }
+  .cta-sub { font-size: 18px; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto 40px; line-height: 1.6; }
+  .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-cta-primary { font-size: 16px; font-weight: 700; padding: 15px 32px; border-radius: 100px; background: var(--white); color: var(--blue); border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
+  .btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,255,255,0.15); }
+  .btn-cta-sec { font-size: 16px; font-weight: 600; padding: 15px 32px; border-radius: 100px; background: transparent; color: rgba(255,255,255,0.75); border: 1.5px solid rgba(255,255,255,0.2); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all .2s; }
+  .btn-cta-sec:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  /* ─── FOOTER ─── */
+  footer { background: #060810; border-top: 1px solid rgba(255,255,255,0.06); padding: 56px 0 32px; }
+  .footer-inner { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  .footer-top { display: grid; grid-template-columns: 240px 1fr; gap: 60px; margin-bottom: 40px; }
+  .footer-logo-mark { width: 34px; height: 34px; border-radius: 9px; background: var(--blue); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .footer-brand { font-family: var(--font-d); font-size: 18px; font-weight: 700; color: var(--white); }
+  .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 6px; line-height: 1.5; }
+  .footer-cols { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
+  .footer-col-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-bottom: 14px; }
+  .footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; margin-bottom: 8px; transition: color .2s; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .footer-made { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .footer-made span { color: #60A5FA; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  .anim-1 { animation: fadeUp .65s ease both; }
+  .anim-2 { animation: fadeUp .65s ease .12s both; }
+  .anim-3 { animation: fadeUp .65s ease .24s both; }
+  .anim-4 { animation: fadeUp .65s ease .36s both; }
+  .anim-5 { animation: fadeUp .65s ease .48s both; }
+  .anim-panel { animation: fadeUp .8s ease .3s both; }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 10 L10 4 L16 10" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 16 L7 10 L13 10 L13 16" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="logo-name">Work<span>Bridge</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#como">¿Cómo funciona?</a>
+      <a href="#empleos">Empleos</a>
+      <a href="#empresas">Para empresas</a>
+      <a href="#planes">Planes</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#" class="btn-ghost">Iniciar sesión</a>
+      <a href="#" class="btn-solid">Crear perfil gratis →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="blob1 hero-blob"></div>
+  <div class="blob2 hero-blob"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow anim-1">
+        <span class="badge badge-blue"><span class="tag-dot"></span>Lima Metropolitana · 2026</span>
+      </div>
+      <h1 class="hero-title anim-2">
+        Tu puente al<br>
+        <em>primer</em><br>
+        <span class="underline-word">empleo</span>.
+      </h1>
+      <p class="hero-sub anim-3">
+        Conectamos jóvenes de <strong>18 a 25 años</strong> con empresas que valoran tu disposición más que tu CV. Sin experiencia previa. Sin procesos complicados.
+      </p>
+      <div class="hero-ctas anim-4">
+        <a href="#" class="btn-hero btn-hero-primary">🚀 Buscar empleos ahora</a>
+        <a href="#empresas" class="btn-hero btn-hero-secondary">Soy empleador →</a>
+      </div>
+      <div class="hero-proof anim-5">
+        <div class="avatars">
+          <div class="av" style="background:#DBEAFE;color:#1D4ED8;">JM</div>
+          <div class="av" style="background:#D1FAE5;color:#065F46;">LR</div>
+          <div class="av" style="background:#FEF3C7;color:#92400E;">KQ</div>
+          <div class="av" style="background:#FCE7F3;color:#9D174D;">NA</div>
+        </div>
+        <span class="proof-text"><strong>+3,400 jóvenes</strong> ya encontraron su primer empleo</span>
+      </div>
+    </div>
+
+    <div class="hero-panel anim-panel">
+      <div class="floating-card fc-top">
+        <div class="fc-icon" style="background:#D1FAE5;">✅</div>
+        <div>
+          <div class="fc-text">¡Postulación enviada!</div>
+          <div class="fc-sub">Mozo · Miraflores</div>
+        </div>
+      </div>
+      <div class="hero-card-main">
+        <div class="hc-header">
+          <span class="hc-title">Empleos para ti</span>
+          <span class="hc-count">1,247 vacantes activas</span>
+        </div>
+        <div class="job-row">
+          <div class="job-ico" style="background:#EFF6FF;">🍽️</div>
+          <div class="job-info">
+            <div class="job-name">Mozo / Atención al cliente</div>
+            <div class="job-company">Cevichería Don José · Sin experiencia</div>
+          </div>
+          <div class="job-meta">
+            <div class="job-salary">S/ 1,200</div>
+            <div class="job-dist">📍 Miraflores</div>
+          </div>
+        </div>
+        <div class="job-row">
+          <div class="job-ico" style="background:#F0FDF4;">🥐</div>
+          <div class="job-info">
+            <div class="job-name">Ayudante de panadería</div>
+            <div class="job-company">El Molino · Part-time disponible</div>
+          </div>
+          <div class="job-meta">
+            <div class="job-salary">S/ 1,050</div>
+            <div class="job-dist">📍 La Molina</div>
+          </div>
+        </div>
+        <div class="job-row">
+          <div class="job-ico" style="background:#FFF7ED;">📚</div>
+          <div class="job-info">
+            <div class="job-name">Asistente de academia</div>
+            <div class="job-company">English Now · Horario flexible</div>
+          </div>
+          <div class="job-meta">
+            <div class="job-salary">S/ 900</div>
+            <div class="job-dist">📍 San Isidro</div>
+          </div>
+        </div>
+        <div class="job-row">
+          <div class="job-ico" style="background:#FDF4FF;">🛵</div>
+          <div class="job-info">
+            <div class="job-name">Repartidor delivery</div>
+            <div class="job-company">RapidExpress · Turno noche</div>
+          </div>
+          <div class="job-meta">
+            <div class="job-salary">S/ 1,400</div>
+            <div class="job-dist">📍 Surco</div>
+          </div>
+        </div>
+      </div>
+      <div class="floating-card fc-bot">
+        <div class="fc-icon" style="background:#FEF3C7;">⚡</div>
+        <div>
+          <div class="fc-text">Nuevo empleo cerca tuyo</div>
+          <div class="fc-sub">San Juan de Lurigancho</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num"><span>12.4</span>%</div>
+        <div class="stat-label">Desempleo juvenil en Lima</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>+1,200</span></div>
+        <div class="stat-label">Vacantes activas hoy</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>72</span>%</div>
+        <div class="stat-label">Contratados en 2 semanas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>340</span>+</div>
+        <div class="stat-label">Empresas en Lima</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="section" id="como">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">¿Cómo funciona?</div>
+      <h2 class="section-title">3 pasos para empezar</h2>
+      <p class="section-sub">Sin CV largo, sin experiencia previa. Solo tu perfil, tus ganas y el empleo correcto.</p>
+    </div>
+    <div class="tabs">
+      <button class="tab active">Soy joven buscador</button>
+      <button class="tab">Soy empleador</button>
+    </div>
+    <div class="steps-grid" id="steps-jovenes">
+      <div class="step-card">
+        <div class="step-num-bg">01</div>
+        <div class="step-icon-wrap si-blue">👤</div>
+        <div class="step-title">Crea tu perfil en 3 minutos</div>
+        <p class="step-desc">Sin CV formal. Sube tu foto, agrega tus habilidades, proyectos académicos o voluntariados. Tu perfil muestra quién eres, no qué has hecho antes.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num-bg">02</div>
+        <div class="step-icon-wrap si-cyan">🔍</div>
+        <div class="step-title">Filtra empleos por zona y horario</div>
+        <p class="step-desc">Busca por distrito, rubro y disponibilidad. Cada oferta muestra el sueldo real y si acepta candidatos sin experiencia. Sin sorpresas.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num-bg">03</div>
+        <div class="step-icon-wrap si-green">✅</div>
+        <div class="step-title">Postula y conecta directo</div>
+        <p class="step-desc">Con un clic postulas y la empresa te contacta por WhatsApp. Sin esperas largas ni formularios interminables. Rápido y humano.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURE: PERFIL SIN EXPERIENCIA ─── -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="features-split">
+      <div class="feat-visual">
+        <div class="feat-screen">
+          <div class="feat-bar">
+            <div class="feat-dot" style="background:#FF6B6B;"></div>
+            <div class="feat-dot" style="background:#FFD93D;"></div>
+            <div class="feat-dot" style="background:#6BCB77;"></div>
+            <span style="font-size:12px;color:var(--slate);margin-left:8px;">Mi perfil WorkBridge</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:14px;background:var(--white);border-radius:12px;border:1px solid var(--border);">
+            <div style="width:52px;height:52px;border-radius:50%;background:#DBEAFE;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--blue);flex-shrink:0;">JM</div>
+            <div>
+              <div style="font-size:14px;font-weight:700;color:var(--ink);">José Mamani</div>
+              <div style="font-size:12px;color:var(--slate);">20 años · San Juan de Lurigancho</div>
+              <div style="display:flex;gap:5px;margin-top:5px;flex-wrap:wrap;">
+                <span style="font-size:10px;background:#DBEAFE;color:var(--blue);padding:2px 8px;border-radius:100px;font-weight:600;">Atención al cliente</span>
+                <span style="font-size:10px;background:#D1FAE5;color:#065F46;padding:2px 8px;border-radius:100px;font-weight:600;">Puntual</span>
+                <span style="font-size:10px;background:#FEF3C7;color:#92400E;padding:2px 8px;border-radius:100px;font-weight:600;">Disponible mañanas</span>
+              </div>
+            </div>
+          </div>
+          <div class="feat-content-list">
+            <div class="feat-row">
+              <div class="feat-row-ico">🏫</div>
+              <div class="feat-row-info">
+                <div class="feat-row-title">Proyecto académico: App de delivery</div>
+                <div class="feat-row-sub">Universidad · 2025</div>
+              </div>
+              <span class="feat-row-tag feat-tag-blue">Destacado</span>
+            </div>
+            <div class="feat-row">
+              <div class="feat-row-ico">🤝</div>
+              <div class="feat-row-info">
+                <div class="feat-row-title">Voluntariado: Tutoría en colegio</div>
+                <div class="feat-row-sub">6 meses · 2024</div>
+              </div>
+              <span class="feat-row-tag feat-tag-green">Verificado</span>
+            </div>
+            <div class="feat-row">
+              <div class="feat-row-ico">📊</div>
+              <div class="feat-row-info">
+                <div class="feat-row-title">Test de habilidades completado</div>
+                <div class="feat-row-sub">Comunicación: 85% · Trabajo en equipo: 92%</div>
+              </div>
+              <span class="feat-row-tag feat-tag-amber">In progress</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text">
+        <div class="feat-label">Para jóvenes</div>
+        <h3 class="feat-title">Tu perfil habla por ti, sin CV formal</h3>
+        <p class="feat-desc">No necesitas experiencia laboral. Muestra tus proyectos académicos, voluntariados y habilidades. Las empresas ven quién eres, no solo qué has hecho.</p>
+        <div class="feat-list">
+          <div class="feat-item"><div class="feat-check"></div>Perfil 100% editable desde el celular</div>
+          <div class="feat-item"><div class="feat-check"></div>Genera tu CV en PDF con un clic</div>
+          <div class="feat-item"><div class="feat-check"></div>Test de autodiagnóstico de habilidades</div>
+          <div class="feat-item"><div class="feat-check"></div>Acceso a capacitaciones cortas y gratis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CATEGORIES ─── -->
+<section class="section" id="empleos">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">Categorías</div>
+      <h2 class="section-title">Empleos para todos los perfiles</h2>
+      <p class="section-sub">Desde gastronomía hasta tecnología. Encuentra empleos que encajan con tu disponibilidad y zona.</p>
+    </div>
+    <div class="cats-wrap">
+      <a href="#" class="cat-card"><span class="emoji">🍽️</span> Gastronomía <span class="cat-count">234</span></a>
+      <a href="#" class="cat-card"><span class="emoji">🛍️</span> Ventas y retail <span class="cat-count">189</span></a>
+      <a href="#" class="cat-card"><span class="emoji">📚</span> Educación <span class="cat-count">97</span></a>
+      <a href="#" class="cat-card"><span class="emoji">🛵</span> Delivery <span class="cat-count">158</span></a>
+      <a href="#" class="cat-card"><span class="emoji">💻</span> Tecnología <span class="cat-count">72</span></a>
+      <a href="#" class="cat-card"><span class="emoji">🔧</span> Técnico <span class="cat-count">88</span></a>
+      <a href="#" class="cat-card"><span class="emoji">🎨</span> Diseño y marketing <span class="cat-count">64</span></a>
+      <a href="#" class="cat-card"><span class="emoji">📦</span> Almacén y logística <span class="cat-count">114</span></a>
+      <a href="#" class="cat-card"><span class="emoji">💇</span> Belleza <span class="cat-count">53</span></a>
+      <a href="#" class="cat-card"><span class="emoji">🏥</span> Salud <span class="cat-count">41</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag" style="color:var(--cyan);">Historias reales</div>
+      <h2 class="section-title section-title-dark">Jóvenes que ya cruzaron el puente</h2>
+      <p class="section-sub section-sub-dark">Basado en perfiles reales de Lima Metropolitana.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-quote">"Llevaba 4 meses buscando y en todos lados me pedían experiencia. En WorkBridge la empresa me escribió al WhatsApp a los 3 días. Ahora soy mozo en Miraflores y me pagan bien."</p>
+        <div class="test-author">
+          <div class="test-av" style="background:#1D4ED8;">JM</div>
+          <div>
+            <div class="test-name">José Mamani</div>
+            <div class="test-role">Mozo · 20 años · San Juan de Lurigancho</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-quote">"Me gustó que el perfil era rápido de hacer desde el celu. No tuve que escribir un CV larguísimo. Encontré trabajo part-time y sigo estudiando sin problema."</p>
+        <div class="test-author">
+          <div class="test-av" style="background:#065F46;">LR</div>
+          <div>
+            <div class="test-name">Lucía Ríos</div>
+            <div class="test-role">Asistente admin · 22 años · Ate</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-quote">"Nunca había trabajado formalmente. WorkBridge me conectó con una panadería cerca de mi casa. El dueño vio mi perfil y me llamó ese día. Ya llevo 3 meses."</p>
+        <div class="test-author">
+          <div class="test-av" style="background:#92400E;">KQ</div>
+          <div>
+            <div class="test-name">Kevin Quispe</div>
+            <div class="test-role">Ayudante panadería · 19 años · La Molina</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOR COMPANIES ─── -->
+<section class="section company-section" id="empresas">
+  <div class="container">
+    <div class="company-inner">
+      <div>
+        <div class="feat-label">Para empresas</div>
+        <h3 class="feat-title">Publica una vacante en menos de 2 minutos</h3>
+        <p class="feat-desc">Sin departamento de RR.HH. Sin procesos complicados. Encuentra jóvenes con disposición real para trabajar, filtra por zona y contacta directo por WhatsApp.</p>
+        <div class="feat-list" style="margin-bottom:28px;">
+          <div class="feat-item"><div class="feat-check"></div>Panel simple: publica con plantillas predefinidas</div>
+          <div class="feat-item"><div class="feat-check"></div>Filtra candidatos por distrito y horario real</div>
+          <div class="feat-item"><div class="feat-check"></div>Contacto directo por WhatsApp con un clic</div>
+          <div class="feat-item"><div class="feat-check"></div>Tablero de seguimiento: Visto → Entrevistado → Contratado</div>
+          <div class="feat-item"><div class="feat-check"></div>Banco de suplentes para turnos de emergencia</div>
+        </div>
+        <a href="#planes" class="btn-solid" style="font-size:15px;padding:13px 28px;">Ver planes para empresas →</a>
+      </div>
+      <div class="company-panel">
+        <div class="cp-header">
+          <span class="cp-title">Panel de empresa · Cevichería Don José</span>
+          <div class="cp-dot-row">
+            <div class="cp-dot" style="background:#FF6B6B;"></div>
+            <div class="cp-dot" style="background:#FFD93D;"></div>
+            <div class="cp-dot" style="background:#6BCB77;"></div>
+          </div>
+        </div>
+        <div class="cp-body">
+          <div class="cp-stats">
+            <div class="cp-stat">
+              <div class="cp-stat-num">24</div>
+              <div class="cp-stat-label">Postulaciones</div>
+            </div>
+            <div class="cp-stat">
+              <div class="cp-stat-num">8</div>
+              <div class="cp-stat-label">Contactados</div>
+            </div>
+            <div class="cp-stat">
+              <div class="cp-stat-num">2</div>
+              <div class="cp-stat-label">Contratados</div>
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">Candidatos recientes</div>
+          <div class="cp-candidates">
+            <div class="cp-cand">
+              <div class="cp-cand-av" style="background:#DBEAFE;color:#1D4ED8;">JM</div>
+              <div>
+                <div class="cp-cand-name">José Mamani · 20 años</div>
+                <div class="cp-cand-dist">📍 SJM · Disponible mañanas</div>
+              </div>
+              <span class="cp-cand-status st-nuevo">Nuevo</span>
+            </div>
+            <div class="cp-cand">
+              <div class="cp-cand-av" style="background:#FEF3C7;color:#92400E;">LF</div>
+              <div>
+                <div class="cp-cand-name">Leonela Franco · 21 años</div>
+                <div class="cp-cand-dist">📍 VES · Disponible tardes</div>
+              </div>
+              <span class="cp-cand-status st-visto">Visto</span>
+            </div>
+            <div class="cp-cand">
+              <div class="cp-cand-av" style="background:#D1FAE5;color:#065F46;">KQ</div>
+              <div>
+                <div class="cp-cand-name">Kevin Quispe · 19 años</div>
+                <div class="cp-cand-dist">📍 La Molina · Full time</div>
+              </div>
+              <span class="cp-cand-status st-cont">Contratado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section class="section section-alt" id="planes">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">Planes</div>
+      <h2 class="section-title">Para jóvenes, siempre gratis</h2>
+      <p class="section-sub">Los planes de pago son para empresas que quieren destacar y contratar mejor.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-tier">Joven</div>
+        <div class="price-num">S/ 0</div>
+        <div class="price-period">Para siempre · Buscadores de empleo</div>
+        <hr class="price-divider">
+        <ul class="price-features">
+          <li class="price-feat">Perfil completo con foto</li>
+          <li class="price-feat">Test de habilidades</li>
+          <li class="price-feat">Postular a empleos ilimitados</li>
+          <li class="price-feat">Filtros por zona y horario</li>
+          <li class="price-feat">Capacitaciones básicas</li>
+          <li class="price-feat off">CV PDF descargable</li>
+          <li class="price-feat off">Badge verificado</li>
+        </ul>
+        <button class="btn-price btn-price-outline">Crear perfil gratis</button>
+      </div>
+      <div class="price-card popular">
+        <div class="popular-badge">Más popular</div>
+        <div class="price-tier">Empresa Starter</div>
+        <div class="price-num">S/ 59</div>
+        <div class="price-period">por mes · Para pymes y emprendimientos</div>
+        <hr class="price-divider">
+        <ul class="price-features">
+          <li class="price-feat">Publicar hasta 3 vacantes activas</li>
+          <li class="price-feat">Ver todos los candidatos</li>
+          <li class="price-feat">Filtros por zona y horario</li>
+          <li class="price-feat">Contacto WhatsApp directo</li>
+          <li class="price-feat">Tablero de seguimiento</li>
+          <li class="price-feat off">Vacantes destacadas</li>
+          <li class="price-feat off">Banco de suplentes</li>
+        </ul>
+        <button class="btn-price btn-price-fill">Empezar gratis 14 días →</button>
+      </div>
+      <div class="price-card">
+        <div class="price-tier">Empresa Pro</div>
+        <div class="price-num">S/ 129</div>
+        <div class="price-period">por mes · Para empresas que contratan seguido</div>
+        <hr class="price-divider">
+        <ul class="price-features">
+          <li class="price-feat">Vacantes ilimitadas</li>
+          <li class="price-feat">Candidatos ilimitados</li>
+          <li class="price-feat">Vacantes destacadas en el feed</li>
+          <li class="price-feat">Banco de suplentes 24/7</li>
+          <li class="price-feat">Preguntas de descarte automáticas</li>
+          <li class="price-feat">Soporte prioritario</li>
+          <li class="price-feat">Reportes de postulaciones</li>
+        </ul>
+        <button class="btn-price btn-price-outline">Contactar ventas →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA FINAL ─── -->
+<section class="cta-final">
+  <div class="cta-blob cta-blob1"></div>
+  <div class="cta-blob cta-blob2"></div>
+  <div class="container cta-content">
+    <h2 class="cta-title">¿Listo para cruzar<br>el <em>puente</em>?</h2>
+    <p class="cta-sub">Únete a miles de jóvenes limeños que encontraron su primer empleo sin experiencia previa.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-cta-primary">🚀 Crear mi perfil gratis</a>
+      <a href="#empresas" class="btn-cta-sec">Soy empleador →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-mark">
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10 L10 4 L16 10" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 16 L7 10 L13 10 L13 16" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="footer-brand">WorkBridge</div>
+        <div class="footer-tagline">Tu puente al primer empleo.<br>Lima Metropolitana · 2026</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">Plataforma</div>
+          <a href="#">Buscar empleos</a>
+          <a href="#">Crear perfil</a>
+          <a href="#">Capacitaciones</a>
+          <a href="#">Categorías</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Empresas</div>
+          <a href="#">Publicar vacante</a>
+          <a href="#">Ver planes</a>
+          <a href="#">Panel de empresa</a>
+          <a href="#">Banco de suplentes</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Startup</div>
+          <a href="#">Nosotros</a>
+          <a href="#">Impulse Technologies</a>
+          <a href="#">Blog</a>
+          <a href="#">Contacto</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <a href="#">Términos de uso</a>
+          <a href="#">Privacidad</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Impulse Technologies · WorkBridge · Lima, Perú</span>
+      <span class="footer-made">Hecho con ♥ por estudiantes de <span>UPC</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tab switcher
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorkBridge | Gestión de Vacantes</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f4f6fb;
+      color: #1f2937;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #111827;
+      color: white;
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .brand span {
+      color: #2563eb;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .menu button {
+      border: none;
+      background: transparent;
+      color: #cbd5e1;
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .menu button.active,
+    .menu button:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    .main {
+      flex: 1;
+      padding: 26px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .topbar h1 {
+      font-size: 26px;
+    }
+
+    .tag {
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: white;
+      padding: 18px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .card h3 {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+      margin-bottom: 22px;
+    }
+
+    .panel h2 {
+      margin-bottom: 18px;
+      font-size: 22px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / 3;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    .btn {
+      border: none;
+      background: #2563eb;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 14px;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: #111827;
+    }
+
+    .vacantes-lista {
+      display: grid;
+      gap: 14px;
+    }
+
+    .vacante {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px;
+      background: #ffffff;
+    }
+
+    .vacante-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .estado {
+      background: #dcfce7;
+      color: #166534;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .detalle {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .preguntas {
+      margin-top: 8px;
+      padding-left: 18px;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .mensajes-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 18px;
+    }
+
+    .conversaciones {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    }
+
+    .conversacion {
+      padding: 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      margin-bottom: 10px;
+    }
+
+    .conversacion.active,
+    .conversacion:hover {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .conversacion h4 {
+      margin-bottom: 5px;
+    }
+
+    .conversacion p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .chat {
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+      display: flex;
+      flex-direction: column;
+      min-height: 560px;
+    }
+
+    .chat-header {
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 16px;
+    }
+
+    .historial {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .mensaje {
+      max-width: 70%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      line-height: 1.4;
+      font-size: 15px;
+    }
+
+    .mensaje.postulante {
+      background: #f1f5f9;
+      align-self: flex-start;
+    }
+
+    .mensaje.empresa {
+      background: #dbeafe;
+      align-self: flex-end;
+    }
+
+    .enviar {
+      display: flex;
+      gap: 10px;
+    }
+
+    .enviar input {
+      flex: 1;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+      }
+
+      .cards,
+      .form-grid,
+      .mensajes-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">Work<span>Bridge</span></div>
+
+      <nav class="menu">
+        <button class="active" onclick="mostrarSeccion('vacantes', this)">Gestión de vacantes</button>
+        <button onclick="mostrarSeccion('mensajes', this)">Bandeja de mensajes</button>
+      </nav>
+
+      <small>Empresa: Constructora Nova</small>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <h1>Panel de empresa</h1>
+        <span class="tag">E4 - Gestión de Vacantes</span>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Vacantes publicadas</h3>
+          <p id="contadorVacantes">2</p>
+        </div>
+        <div class="card">
+          <h3>Postulantes recibidos</h3>
+          <p>34</p>
+        </div>
+        <div class="card">
+          <h3>Mensajes activos</h3>
+          <p>3</p>
+        </div>
+        <div class="card">
+          <h3>Entrevistas</h3>
+          <p>5</p>
+        </div>
+      </div>
+
+      <!-- SECCIÓN VACANTES -->
+      <section id="vacantes" class="section active">
+        <div class="panel">
+          <h2>Publicar nueva vacante</h2>
+
+          <form id="formVacante">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="titulo">Título de la vacante</label>
+                <input type="text" id="titulo" placeholder="Ej. Asistente administrativo" required>
+              </div>
+
+              <div class="form-group">
+                <label for="distrito">Distrito</label>
+                <select id="distrito" required>
+                  <option value="">Seleccionar distrito</option>
+                  <option>Los Olivos</option>
+                  <option>Independencia</option>
+                  <option>San Martín de Porres</option>
+                  <option>Comas</option>
+                  <option>Lima Centro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="jornada">Jornada</label>
+                <select id="jornada" required>
+                  <option value="">Seleccionar jornada</option>
+                  <option>Tiempo completo</option>
+                  <option>Medio tiempo</option>
+                  <option>Part-time</option>
+                  <option>Prácticas</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="sueldo">Sueldo</label>
+                <input type="text" id="sueldo" placeholder="Ej. S/ 1200 - S/ 1500" required>
+              </div>
+
+              <div class="form-group full">
+                <label for="requisitos">Requisitos</label>
+                <textarea id="requisitos" placeholder="Ej. Manejo de Excel, buena comunicación, disponibilidad inmediata." required></textarea>
+              </div>
+
+              <div class="form-group full">
+                <label for="preguntas">Preguntas de descarte</label>
+                <textarea id="preguntas" placeholder="Ej. ¿Tienes disponibilidad inmediata?&#10;¿Cuentas con experiencia previa?&#10;¿En qué distrito resides?" required></textarea>
+              </div>
+            </div>
+
+            <button class="btn" type="submit">Publicar vacante</button>
+          </form>
+        </div>
+
+        <div class="panel">
+          <h2>Vacantes publicadas</h2>
+
+          <div class="vacantes-lista" id="listaVacantes">
+            <article class="vacante">
+              <div class="vacante-header">
+                <h3>Auxiliar administrativo</h3>
+                <span class="estado">Activa</span>
+              </div>
+              <p class="detalle">Los Olivos · Tiempo completo · S/ 1300</p>
+              <p>Requisitos: manejo básico de Excel, comunicación efectiva y disponibilidad inmediata.</p>
+              <ol class="preguntas">
+                <li>¿Tienes experiencia en atención al cliente?</li>
+                <li>¿Tienes disponibilidad para trabajar presencial?</li>
+              </ol>
+            </article>
+
+            <article class="vacante">
+              <div class="vacante-header">
+                <h3>Practicante de recursos humanos</h3>
+                <span class="estado">Activa</span>
+              </div>
+              <p class="detalle">Lima Centro · Prácticas · S/ 800</p>
+              <p>Requisitos: estudiante técnico o universitario, actitud proactiva y manejo de documentos.</p>
+              <ol class="preguntas">
+                <li>¿Qué ciclo estás cursando?</li>
+                <li>¿Puedes trabajar 30 horas semanales?</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN MENSAJES -->
+      <section id="mensajes" class="section">
+        <div class="mensajes-layout">
+          <div class="conversaciones">
+            <h2>Conversaciones</h2>
+
+            <div class="conversacion active" onclick="cambiarChat('Lucía Torres', 'Postulante a Auxiliar administrativo')">
+              <h4>Lucía Torres</h4>
+              <p>Postulante a Auxiliar administrativo</p>
+            </div>
+
+            <div class="conversacion" onclick="cambiarChat('Miguel Ramos', 'Postulante a Practicante RR.HH.')">
+              <h4>Miguel Ramos</h4>
+              <p>Postulante a Practicante RR.HH.</p>
+            </div>
+
+            <div class="conversacion" onclick="cambiarChat('Andrea Salazar', 'Consulta sobre horario')">
+              <h4>Andrea Salazar</h4>
+              <p>Consulta sobre horario</p>
+            </div>
+          </div>
+
+          <div class="chat">
+            <div class="chat-header">
+              <h2 id="nombreChat">Lucía Torres</h2>
+              <p id="detalleChat">Postulante a Auxiliar administrativo</p>
+            </div>
+
+            <div class="historial" id="historialMensajes">
+              <div class="mensaje postulante">
+                Buenas tardes, quisiera saber si la vacante sigue disponible.
+              </div>
+              <div class="mensaje empresa">
+                Buenas tardes, sí. La vacante sigue activa. ¿Tienes disponibilidad inmediata?
+              </div>
+              <div class="mensaje postulante">
+                Sí, puedo empezar esta semana.
+              </div>
+            </div>
+
+            <div class="enviar">
+              <input type="text" id="nuevoMensaje" placeholder="Escribe un mensaje para el postulante...">
+              <button class="btn btn-secondary" onclick="enviarMensaje()">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function mostrarSeccion(id, boton) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      document.getElementById(id).classList.add('active');
+
+      document.querySelectorAll('.menu button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      boton.classList.add('active');
+    }
+
+    document.getElementById('formVacante').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const titulo = document.getElementById('titulo').value;
+      const distrito = document.getElementById('distrito').value;
+      const jornada = document.getElementById('jornada').value;
+      const sueldo = document.getElementById('sueldo').value;
+      const requisitos = document.getElementById('requisitos').value;
+      const preguntasTexto = document.getElementById('preguntas').value;
+
+      const preguntas = preguntasTexto
+        .split('\n')
+        .filter(p => p.trim() !== '')
+        .map(p => `<li>${p}</li>`)
+        .join('');
+
+      const nuevaVacante = document.createElement('article');
+      nuevaVacante.classList.add('vacante');
+
+      nuevaVacante.innerHTML = `
+        <div class="vacante-header">
+          <h3>${titulo}</h3>
+          <span class="estado">Activa</span>
+        </div>
+        <p class="detalle">${distrito} · ${jornada} · ${sueldo}</p>
+        <p>Requisitos: ${requisitos}</p>
+        <ol class="preguntas">${preguntas}</ol>
+      `;
+
+      document.getElementById('listaVacantes').prepend(nuevaVacante);
+
+      const contador = document.getElementById('contadorVacantes');
+      contador.textContent = parseInt(contador.textContent) + 1;
+
+      this.reset();
+      alert('Vacante publicada correctamente.');
+    });
+
+    function cambiarChat(nombre, detalle) {
+      document.getElementById('nombreChat').textContent = nombre;
+      document.getElementById('detalleChat').textContent = detalle;
+
+      document.getElementById('historialMensajes').innerHTML = `
+        <div class="mensaje postulante">
+          Buenas tardes, estoy interesado/a en la vacante.
+        </div>
+        <div class="mensaje empresa">
+          Buenas tardes, gracias por postular. Revisaremos tu perfil.
+        </div>
+      `;
+
+      document.querySelectorAll('.conversacion').forEach(c => {
+        c.classList.remove('active');
+      });
+
+      event.currentTarget.classList.add('active');
+    }
+
+    function enviarMensaje() {
+      const input = document.getElementById('nuevoMensaje');
+      const texto = input.value.trim();
+
+      if (texto === '') {
+        alert('Escribe un mensaje antes de enviar.');
+        return;
+      }
+
+      const mensaje = document.createElement('div');
+      mensaje.classList.add('mensaje', 'empresa');
+      mensaje.textContent = texto;
+
+      document.getElementById('historialMensajes').appendChild(mensaje);
+      input.value = '';
+    }
+  </script>
+</body>
+</html>

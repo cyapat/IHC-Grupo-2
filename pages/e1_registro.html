@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkBridge | Registrarse</title>
+  <link rel="stylesheet" href="e1_assets/e1_style.css">
+</head>
+<body>
+  <div class="auth-container">
+    
+    <!-- Columna Formulario (Izquierda en Registro) -->
+    <div class="auth-form-column">
+      <div class="auth-card">
+        <h2>Crear Cuenta</h2>
+        <p class="subtitle">Regístrate gratis para empezar a usar la plataforma</p>
+
+        <!-- Alerta de mensaje -->
+        <div id="alert-msg" class="alert-msg"></div>
+
+        <!-- Selector de Rol (Postulante / Empresa) -->
+        <div class="role-selector">
+          <button type="button" class="role-btn active" data-role="postulante">Soy Postulante</button>
+          <button type="button" class="role-btn" data-role="empresa">Soy Empresa</button>
+        </div>
+
+        <form id="register-form">
+          <!-- Input oculto para almacenar el rol activo -->
+          <input type="hidden" id="active-role" value="postulante">
+
+          <div class="form-section">
+            
+            <!-- CAMPOS COMUNES -->
+            <div class="form-group">
+              <label for="correo">Correo Electrónico</label>
+              <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contrasena">Contraseña</label>
+              <input type="password" id="contrasena" placeholder="Mínimo 6 caracteres" required>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmar-contrasena">Confirmar Contraseña</label>
+              <input type="password" id="confirmar-contrasena" placeholder="Repite tu contraseña" required>
+            </div>
+
+            <!-- CONTENEDOR CAMPOS POSTULANTE -->
+            <div id="campos-postulante" class="form-section" style="margin: 0; padding: 0;">
+              <div class="form-group">
+                <label for="nombre-completo">Nombres Completos</label>
+                <input type="text" id="nombre-completo" placeholder="Ej. Juan Pérez" required>
+              </div>
+
+              <div class="form-group">
+                <label for="edad">Edad</label>
+                <input type="number" id="edad" placeholder="Ej. 21" min="18" max="100" required>
+              </div>
+
+              <div class="form-group">
+                <label for="celular">Número de Celular</label>
+                <input type="tel" id="celular" placeholder="Ej. 987654321" required>
+              </div>
+            </div>
+
+            <!-- CONTENEDOR CAMPOS EMPRESA (Oculto al inicio) -->
+            <div id="campos-empresa" class="form-section" style="display: none; margin: 0; padding: 0;">
+              <div class="form-group">
+                <label for="nombre-empresa">Nombre de la Empresa o Negocio</label>
+                <input type="text" id="nombre-empresa" placeholder="Ej. Cevicheria Don Jose">
+              </div>
+
+              <div class="form-group">
+                <label for="ruc">RUC de la Empresa</label>
+                <input type="text" id="ruc" placeholder="11 dígitos" maxlength="11">
+              </div>
+
+              <div class="form-group">
+                <label for="distrito-empresa">Distrito de Ubicación</label>
+                <select id="distrito-empresa">
+                  <option value="">Seleccionar distrito</option>
+                  <option>Miraflores</option>
+                  <option>San Isidro</option>
+                  <option>Santiago de Surco</option>
+                  <option>San Juan de Lurigancho</option>
+                  <option>Los Olivos</option>
+                  <option>Comas</option>
+                  <option>Ate</option>
+                  <option>La Victoria</option>
+                  <option>Villa El Salvador</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn">Crear Cuenta</button>
+          </div>
+        </form>
+
+        <div class="auth-footer">
+          ¿Ya tienes una cuenta? <a href="e1_login.html">Inicia sesión aquí</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Splash (Derecha en Registro) -->
+    <div class="auth-splash-column">
+      <div class="splash-content">
+        <div class="splash-brand">
+          Work<span>Bridge</span>
+        </div>
+        <h1>Crea tu puente al éxito</h1>
+        <p>Regístrate hoy en WorkBridge. Diseña tu perfil digital basado en tus habilidades y disponibilidad real, o publica tus vacantes para encontrar el mejor talento joven de Lima.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="e1_assets/e1_auth.js"></script>
+</body>
+</html>

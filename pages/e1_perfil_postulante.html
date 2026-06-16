@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkBridge | Mi Perfil Digital</title>
+  <link rel="stylesheet" href="e1_assets/e1_style.css">
+</head>
+<body>
+  <div class="layout">
+    
+    <!-- Barra Lateral Izquierda (Sidebar) -->
+    <aside class="sidebar">
+      <div class="brand">Work<span>Bridge</span></div>
+
+      <nav class="menu">
+        <a href="e1_perfil_postulante.html" class="active">Mi Perfil</a>
+        <a href="#">Buscar Empleos</a>
+        <a href="#">Mis Postulaciones</a>
+        
+        <!-- Enlace para Cerrar Sesión -->
+        <a href="#" onclick="logoutUser(); return false;" style="margin-top: auto; color: #f87171; font-weight: 700;">
+          Cerrar Sesión
+        </a>
+      </nav>
+
+      <div style="margin-top: 10px; border-top: 1px solid #374151; padding-top: 15px;">
+        <span style="color: #94a3b8; font-size: 12px; display: block;">Postulante Activo:</span>
+        <strong id="postulante-nombre-sidebar" style="color: white; font-size: 14px;">Cargando...</strong>
+      </div>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <main class="main">
+      <div class="topbar">
+        <h1>Mi Perfil Digital</h1>
+        <span class="tag">E1 - Perfil Digital</span>
+      </div>
+
+      <p style="margin-bottom: 24px; color: #64748b; font-size: 16px;">
+        Bienvenido/a, <span id="postulante-nombre-topbar" style="font-weight: 700; color: #1f2937;">...</span>. Aquí puedes ver y actualizar la información de tu postulación.
+      </p>
+
+      <!-- Alertas de éxito o error -->
+      <div id="alert-msg" class="alert-msg"></div>
+
+      <!-- Panel de Edición de Perfil -->
+      <div class="panel">
+        <h2>Editar Información del Perfil</h2>
+
+        <form id="form-perfil">
+          
+          <!-- SECCIÓN AVATAR -->
+          <div class="profile-avatar-container">
+            <img id="current-avatar-img" class="current-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%232563eb'><circle cx='50' cy='50' r='50'/><circle cx='50' cy='35' r='18' fill='white'/><path d='M20 78c0-15 12-25 30-25s30 10 30 25z' fill='white'/></svg>" alt="Foto de Perfil">
+            
+            <div class="avatar-selection-title">Selecciona un Avatar:</div>
+            <div class="avatar-options">
+              <img class="avatar-option" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%232563eb'><circle cx='50' cy='50' r='50'/><circle cx='50' cy='35' r='18' fill='white'/><path d='M20 78c0-15 12-25 30-25s30 10 30 25z' fill='white'/></svg>" alt="Avatar Azul">
+              <img class="avatar-option" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%2306b6d4'><circle cx='50' cy='50' r='50'/><circle cx='50' cy='35' r='18' fill='white'/><path d='M20 78c0-15 12-25 30-25s30 10 30 25z' fill='white'/></svg>" alt="Avatar Celeste">
+              <img class="avatar-option" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%2316a34a'><circle cx='50' cy='50' r='50'/><circle cx='50' cy='35' r='18' fill='white'/><path d='M20 78c0-15 12-25 30-25s30 10 30 25z' fill='white'/></svg>" alt="Avatar Verde">
+              <img class="avatar-option" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23d97706'><circle cx='50' cy='50' r='50'/><circle cx='50' cy='35' r='18' fill='white'/><path d='M20 78c0-15 12-25 30-25s30 10 30 25z' fill='white'/></svg>" alt="Avatar Naranja">
+            </div>
+
+            <label class="file-upload-label" for="file-avatar">O sube una foto desde tu computadora</label>
+            <input type="file" id="file-avatar" accept="image/*">
+          </div>
+
+          <!-- SECCIÓN DE TEXTO -->
+          <div class="form-grid">
+            <div class="form-group full">
+              <label for="bio">Biografía / Presentación Corta</label>
+              <textarea id="bio" placeholder="Cuéntale a las empresas un poco sobre ti, tus intereses y tus metas..." required></textarea>
+            </div>
+
+            <div class="form-group full">
+              <label for="distrito">Distrito de Lima de Residencia</label>
+              <select id="distrito" required>
+                <option value="">Selecciona tu distrito</option>
+                <option>Ate</option>
+                <option>Barranco</option>
+                <option>Comas</option>
+                <option>Independencia</option>
+                <option>La Molina</option>
+                <option>La Victoria</option>
+                <option>Lima Centro</option>
+                <option>Los Olivos</option>
+                <option>Lince</option>
+                <option>Miraflores</option>
+                <option>San Borja</option>
+                <option>San Isidro</option>
+                <option>San Juan de Lurigancho</option>
+                <option>San Martín de Porres</option>
+                <option>Santiago de Surco</option>
+                <option>Villa El Salvador</option>
+              </select>
+            </div>
+
+            <!-- SECCIÓN HABILIDADES (TAGS) -->
+            <div class="form-group full">
+              <label for="skill-input">Habilidades Clave (Agrega una por una)</label>
+              <div class="skills-input-wrapper">
+                <input type="text" id="skill-input" placeholder="Ej. Trabajo en equipo, Excel, Atención al cliente...">
+                <button type="button" id="add-skill-btn" class="btn" style="margin-top: 0;">Agregar</button>
+              </div>
+              
+              <!-- Contenedor dinámico de tags -->
+              <div id="skills-container" class="skills-tags-container"></div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Guardar Cambios</button>
+        </form>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="e1_assets/e1_auth.js"></script>
+  <script src="e1_assets/e1_perfil.js"></script>
+</body>
+</html>

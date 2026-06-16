@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkBridge | Iniciar Sesión</title>
+  <link rel="stylesheet" href="e1_assets/e1_style.css">
+</head>
+<body>
+  <div class="auth-container login-order">
+    
+    <!-- Columna Splash (Izquierda en Login) -->
+    <div class="auth-splash-column">
+      <div class="splash-content">
+        <div class="splash-brand">
+          Work<span>Bridge</span>
+        </div>
+        <h1>Conecta con tu futuro</h1>
+        <p>Inicia sesión en WorkBridge para continuar postulando a empleos de entrada en Lima, editando tu perfil digital o gestionando tus candidatos en pocos pasos.</p>
+      </div>
+    </div>
+
+    <!-- Columna Formulario (Derecha en Login) -->
+    <div class="auth-form-column">
+      <div class="auth-card">
+        <h2>Bienvenido</h2>
+        <p class="subtitle">Por favor, ingresa tus credenciales de acceso</p>
+
+        <!-- Alerta de mensaje -->
+        <div id="alert-msg" class="alert-msg"></div>
+
+        <!-- Selector de Rol (Postulante / Empresa) -->
+        <div class="role-selector">
+          <button type="button" class="role-btn active" data-role="postulante">Soy Postulante</button>
+          <button type="button" class="role-btn" data-role="empresa">Soy Empresa</button>
+        </div>
+
+        <form id="login-form">
+          <!-- Input oculto para almacenar el rol activo -->
+          <input type="hidden" id="active-role" value="postulante">
+
+          <div class="form-section">
+            <div class="form-group">
+              <label for="correo">Correo Electrónico</label>
+              <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contrasena">Contraseña</label>
+              <input type="password" id="contrasena" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn">Iniciar Sesión</button>
+          </div>
+        </form>
+
+        <div class="auth-footer">
+          ¿No tienes una cuenta? <a href="e1_registro.html">Regístrate aquí</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="e1_assets/e1_auth.js"></script>
+</body>
+</html>

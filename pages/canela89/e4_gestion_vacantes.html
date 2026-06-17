@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../style.css">
 </head>
 
@@ -21,8 +21,13 @@
       </a>
 
       <nav class="e4-menu">
-        <button class="active" onclick="mostrarSeccion('vacantes', this)">Gestión de vacantes</button>
-        <button onclick="mostrarSeccion('mensajes', this)">Bandeja de mensajes</button>
+        <a class="e4-menu-link" href="../../wb_empresa_panel.html">Panel general</a>
+        <a class="e4-menu-link" href="../../wb_empresa_panel.html#postulantes">Postulantes</a>
+        <a class="e4-menu-link" href="../../wb_empresa_panel.html#proceso">En proceso</a>
+        <a class="e4-menu-link" href="../../wb_empresa_panel.html#contratados">Contratados</a>
+        <a class="e4-menu-link" href="../../wb_empresa_panel.html#vacantes">Vacantes</a>
+        <button class="active" onclick="mostrarSeccion('vacantes', this)">Publicar</button>
+        <button onclick="mostrarSeccion('mensajes', this)">Mensajes</button>
       </nav>
 
       <div class="e4-sidebar-note">
@@ -111,7 +116,7 @@
 
               <div class="e4-form-group e4-full">
                 <label for="preguntas">Preguntas de descarte</label>
-                <textarea id="preguntas" placeholder="Ej. ¿Tienes disponibilidad inmediata?&#10;¿Cuentas con experiencia previa?&#10;¿En qué distrito resides?" required></textarea>
+                <textarea id="preguntas" placeholder="Ej. ¿Tienes disponibilidad inmediata&#10;¿Cuentas con experiencia previa&#10;¿En qué distrito resides" required></textarea>
               </div>
             </div>
 
@@ -136,8 +141,8 @@
               <p class="e4-detalle">Los Olivos · Tiempo completo · S/ 1300</p>
               <p>Requisitos: manejo básico de Excel, comunicación efectiva y disponibilidad inmediata.</p>
               <ol class="e4-preguntas">
-                <li>¿Tienes experiencia en atención al cliente?</li>
-                <li>¿Tienes disponibilidad para trabajar presencial?</li>
+                <li>¿Tienes experiencia en atención al cliente</li>
+                <li>¿Tienes disponibilidad para trabajar presencial</li>
               </ol>
             </article>
 
@@ -149,8 +154,8 @@
               <p class="e4-detalle">Lima Centro · Prácticas · S/ 800</p>
               <p>Requisitos: estudiante técnico o universitario, actitud proactiva y manejo de documentos.</p>
               <ol class="e4-preguntas">
-                <li>¿Qué ciclo estás cursando?</li>
-                <li>¿Puedes trabajar 30 horas semanales?</li>
+                <li>¿Qué ciclo estás cursando</li>
+                <li>¿Puedes trabajar 30 horas semanales</li>
               </ol>
             </article>
           </div>
@@ -193,7 +198,7 @@
                 Buenas tardes, quisiera saber si la vacante sigue disponible.
               </div>
               <div class="e4-mensaje e4-empresa">
-                Buenas tardes, sí. La vacante sigue activa. ¿Tienes disponibilidad inmediata?
+                Buenas tardes, sí. La vacante sigue activa. ¿Tienes disponibilidad inmediata
               </div>
               <div class="e4-mensaje e4-postulante">
                 Sí, puedo empezar esta semana.
@@ -224,6 +229,13 @@
 
       boton.classList.add('active');
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash === '#mensajes') {
+        const botones = document.querySelectorAll('.e4-menu button');
+        mostrarSeccion('mensajes', botones[1]);
+      }
+    });
 
     document.getElementById('formVacante').addEventListener('submit', function(e) {
       e.preventDefault();

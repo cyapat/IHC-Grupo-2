@@ -11,26 +11,29 @@
     
     <!-- Barra Lateral Izquierda (Sidebar) -->
     <aside class="sidebar">
-      <div class="brand">Work<span>Bridge</span></div>
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">WB</span>
+        <span>WorkBridge</span>
+      </a>
 
       <nav class="menu">
+        <a href="../index.html">Inicio</a>
         <a href="e1_perfil_postulante.html" class="active">Mi Perfil</a>
-        <a href="#">Buscar Empleos</a>
-        <a href="#">Mis Postulaciones</a>
-        
-        <!-- Enlace para Cerrar Sesión -->
-        <a href="#" onclick="logoutUser(); return false;" style="margin-top: auto; color: #f87171; font-weight: 700;">
-          Cerrar Sesión
-        </a>
+        <a href="../wb_hub_postulante.html">Buscar Empleos</a>
+        <a href="../wb_guardados.html">Mis Guardados</a>
+        <a href="../wb_mis_postulaciones.html">Mis Postulaciones</a>
+        <a href="../wb_status_postulacion.html">Seguimiento</a>
+        <a href="#" onclick="logoutUser(); return false;">Salir</a>
       </nav>
 
-      <div style="margin-top: 10px; border-top: 1px solid #374151; padding-top: 15px;">
-        <span style="color: #94a3b8; font-size: 12px; display: block;">Postulante Activo:</span>
-        <strong id="postulante-nombre-sidebar" style="color: white; font-size: 14px;">Cargando...</strong>
+      <div class="sidebar-note">
+        <span>Postulante demo</span>
+        <strong id="postulante-nombre-sidebar">Cargando...</strong>
+        <small>20 anos - San Juan de Lurigancho</small>
       </div>
     </aside>
 
-    <!-- Área de Contenido Principal -->
+<!-- Área de Contenido Principal -->
     <main class="main">
       <div class="topbar">
         <h1>Mi Perfil Digital</h1>

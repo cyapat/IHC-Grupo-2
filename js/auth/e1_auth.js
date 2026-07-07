@@ -184,9 +184,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // Redirección con retraso para mostrar mensaje de éxito
       setTimeout(() => {
         if (role === "postulante") {
-          window.location.href = "./e1_perfil_postulante.html";
+          window.location.href = "../profile/perfil_postulante.html";
         } else {
-          window.location.href = "../wb_empresa_panel.html";
+          window.location.href = "../empresa/panel.html";
         }
       }, 1500);
     });
@@ -219,9 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
       // Redirección
       setTimeout(() => {
         if (role === "postulante") {
-          window.location.href = "./e1_perfil_postulante.html";
+          window.location.href = "../profile/perfil_postulante.html";
         } else {
-          window.location.href = "../wb_empresa_panel.html";
+          window.location.href = "../empresa/panel.html";
         }
       }, 1200);
     });
@@ -231,5 +231,5 @@ document.addEventListener("DOMContentLoaded", () => {
 // Función global de cerrar sesión (para ser llamada desde el panel)
 window.logoutUser = () => {
   localStorage.removeItem("wb_session");
-  window.location.href = "./e1_login.html";
+  window.location.href = "../auth/login.html";
 };

@@ -1,16 +1,29 @@
 // Lógica del Perfil del Postulante para Épica E1
 document.addEventListener("DOMContentLoaded", () => {
   // --- VERIFICACIÓN DE SESIÓN ---
-  const sessionUser = JSON.parse(localStorage.getItem("wb_session"));
+  let sessionUser = JSON.parse(localStorage.getItem("wb_session"));
   
   if (!sessionUser) {
-    window.location.href = "./e1_login.html";
-    return;
+    sessionUser = {
+      nombre: "Jose Mamani",
+      edad: "20",
+      celular: "999999999",
+      correo: "jose@gmail.com",
+      contrasena: "123456",
+      role: "postulante",
+      perfil: {
+        avatar: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%232563eb'><circle cx='50' cy='50' r='50'/><circle cx='50' cy='35' r='18' fill='white'/><path d='M20 78c0-15 12-25 30-25s30 10 30 25z' fill='white'/></svg>",
+        bio: "Joven proactivo de SJL buscando su primer empleo en atencion al cliente. Puntual y con facilidad para trabajar en equipo.",
+        distrito: "San Juan de Lurigancho",
+        habilidades: ["Atencion al cliente", "Puntualidad", "Trabajo en equipo"]
+      }
+    };
+    localStorage.setItem("wb_session", JSON.stringify(sessionUser));
   }
 
   if (sessionUser.role !== "postulante") {
     // Si es empresa, redirigir al panel correspondiente
-    window.location.href = "../wb_empresa_panel.html";
+    window.location.href = "../empresa/panel.html";
     return;
   }
 

@@ -8,6 +8,7 @@ Proyecto web estatico para IHC y Programacion Web. WorkBridge conecta jovenes de
 - CSS3
 - JavaScript
 - OpenAI API con funcion serverless de Netlify
+- Supabase como base de datos provisional
 - LocalStorage para datos demo
 - Responsive Web Design
 - Netlify
@@ -28,6 +29,7 @@ IHC-Grupo-2/
     auth/
     empresa/
     profile/
+    supabase/
   netlify/
     functions/
   pages/
@@ -36,6 +38,8 @@ IHC-Grupo-2/
     empresa/
     postulante/
     profile/
+  supabase/
+    schema.sql
 ```
 
 ## Paginas principales para Capitulo V
@@ -77,6 +81,23 @@ La pagina `pages/assistant/assistant.html` usa `js/assistant/assistant.js` para 
 
 ```text
 OPENAI_API_KEY=tu_clave
+```
+
+## Supabase
+
+La base de datos provisional esta documentada en `supabase/schema.sql`. Ese archivo se ejecuta en el SQL Editor de Supabase y crea tablas demo para usuarios, perfiles, empresas, vacantes, postulaciones, guardados y mensajes.
+
+La funcion `netlify/functions/supabase.js` consulta Supabase desde Netlify y la capa frontend `js/supabase/workbridge-data.js` muestra datos reales en:
+
+- `pages/postulante/hub_postulante.html`
+- `pages/postulante/busqueda.html`
+- `pages/postulante/mis_postulaciones.html`
+
+Variables sugeridas para Netlify:
+
+```text
+SUPABASE_URL=tu_project_url
+SUPABASE_PUBLISHABLE_KEY=tu_publishable_key
 ```
 
 ## Despliegue

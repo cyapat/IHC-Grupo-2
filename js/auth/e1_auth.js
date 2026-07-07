@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Redirección
       setTimeout(() => {
         if (role === "postulante") {
-          window.location.href = "../profile/perfil_postulante.html";
+          window.location.href = "../profile/perfil_vista.html";
         } else {
           window.location.href = "../empresa/panel.html";
         }

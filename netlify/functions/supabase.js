@@ -24,6 +24,7 @@ exports.handler = async (event) => {
 
   const endpoints = {
     vacantes: "/rest/v1/vacantes?select=id,titulo,modalidad,ubicacion,salario,descripcion,requisitos,estado,creado_en,empresas(nombre,rubro)&estado=eq.activa&order=creado_en.desc",
+    detalleVacante: `/rest/v1/vacantes?select=id,titulo,modalidad,ubicacion,salario,descripcion,requisitos,estado,creado_en,empresas(nombre,rubro,descripcion,ubicacion)&id=eq.${encodeURIComponent(event.queryStringParameters?.id || "")}&limit=1`,
     postulaciones: "/rest/v1/postulaciones?select=id,estado,mensaje,creado_en,vacantes(titulo,modalidad,ubicacion,salario,empresas(nombre))&order=creado_en.desc",
   };
 

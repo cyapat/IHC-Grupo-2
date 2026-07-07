@@ -50,7 +50,8 @@ IHC-Grupo-2/
 | Patrick Leonardo | `pages/empresa/panel.html` | Panel empresa: stats, lista postulantes, en proceso, contratados, vacantes activas y detalle candidato integrado. |
 | Cristian Condori | `pages/auth/login.html` | Login con selector postulante/empresa, validacion de campos y redireccion segun tipo. |
 | Cristian Condori | `pages/auth/register.html` | Registro de postulante y empresa con formularios diferenciados. |
-| Cristian Condori | `pages/profile/perfil_postulante.html` | Perfil editable: foto/avatar, sobre mi, habilidades, zona y proyectos academicos. |
+| Cristian Condori | `pages/profile/perfil_vista.html` | Vista final del perfil del postulante con datos guardados, habilidades y acceso a edicion. |
+| Cristian Condori | `pages/profile/perfil_postulante.html` | Edicion de perfil: foto/avatar, sobre mi, habilidades, zona y proyectos academicos. |
 | Valentino Rojas | `pages/postulante/hub_postulante.html` | Feed de empleos con buscador, filtros, chips, cards de empleo, guardar y postular. |
 | Valentino Rojas | `pages/postulante/detalle_empleo.html` | Detalle de empleo con descripcion, requisitos, sueldo, empresa, preguntas de descarte y boton postular. |
 | Valentino Rojas | `pages/postulante/guardados.html` | Lista de empleos guardados por el postulante. |
@@ -66,7 +67,7 @@ IHC-Grupo-2/
 
 1. Abrir `index.html`.
 2. Entrar a `pages/auth/register.html` o `pages/auth/login.html`.
-3. Como postulante, ir a `pages/profile/perfil_postulante.html`.
+3. Como postulante, ir a `pages/profile/perfil_vista.html` y usar `Editar` para actualizar el perfil.
 4. Buscar empleos en `pages/postulante/hub_postulante.html`.
 5. Abrir `pages/postulante/detalle_empleo.html` y postular.
 6. Revisar `pages/postulante/mis_postulaciones.html`.

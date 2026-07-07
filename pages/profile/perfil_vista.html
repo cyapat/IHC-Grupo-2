@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkBridge | Perfil del Postulante</title>
+  <link rel="stylesheet" href="../../css/e1_style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="../../index.html">
+        <span class="brand-mark">WB</span>
+        <span>WorkBridge</span>
+      </a>
+
+      <nav class="menu">
+        <a href="perfil_vista.html" class="active">Mi Perfil</a>
+        <a href="../postulante/hub_postulante.html">Buscar Empleos</a>
+        <a href="../postulante/guardados.html">Mis Guardados</a>
+        <a href="../postulante/mis_postulaciones.html">Mis Postulaciones</a>
+        <a href="../postulante/status_postulacion.html">Seguimiento</a>
+        <a href="../assistant/assistant.html">Asistente IA</a>
+        <a href="#" onclick="logoutUser(); return false;">Salir</a>
+      </nav>
+
+      <div class="sidebar-note">
+        <span>Postulante demo</span>
+        <strong data-profile-name>Jose Mamani</strong>
+        <small data-profile-zone>20 anos - San Juan de Lurigancho</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Mi Perfil Digital</h1>
+          <p class="profile-lead">Vista final del perfil que ven las empresas al evaluar una postulacion.</p>
+        </div>
+        <a class="btn profile-edit-btn" href="perfil_postulante.html">Editar</a>
+      </div>
+
+      <section class="profile-view-hero panel">
+        <img data-profile-avatar class="profile-view-avatar" src="" alt="Avatar del postulante">
+        <div class="profile-view-main">
+          <span class="tag">Perfil completado</span>
+          <h2 data-profile-name>Jose Mamani</h2>
+          <p data-profile-bio>Joven proactivo de SJL buscando su primer empleo en atencion al cliente.</p>
+        </div>
+      </section>
+
+      <section class="profile-view-grid">
+        <article class="panel profile-view-card">
+          <span class="profile-card-label">Distrito</span>
+          <strong data-profile-district>San Juan de Lurigancho</strong>
+          <p>Zona de residencia declarada para recomendar empleos cercanos.</p>
+        </article>
+
+        <article class="panel profile-view-card">
+          <span class="profile-card-label">Contacto</span>
+          <strong data-profile-phone>999999999</strong>
+          <p data-profile-email>jose@gmail.com</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="profile-section-head">
+          <div>
+            <span class="profile-card-label">Habilidades clave</span>
+            <h2>Fortalezas del postulante</h2>
+          </div>
+          <a class="btn btn-secondary" href="../assistant/assistant.html">Mejorar con IA</a>
+        </div>
+        <div class="profile-skill-list" data-profile-skills></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../../js/auth/e1_auth.js"></script>
+  <script src="../../js/profile/perfil_vista.js"></script>
+</body>
+</html>

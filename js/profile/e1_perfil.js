@@ -225,7 +225,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       localStorage.setItem("wb_users", JSON.stringify(updatedUsers));
 
-      showAlert("¡Perfil guardado correctamente!", "success");
+      showAlert("Perfil guardado correctamente. Redirigiendo a la vista final...", "success");
+
+      setTimeout(() => {
+        window.location.href = "perfil_vista.html";
+      }, 700);
     });
   }
 

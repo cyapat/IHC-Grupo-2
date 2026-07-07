@@ -11,6 +11,7 @@
     renderVacantes();
     renderDetalleVacante();
     renderPostulaciones();
+    renderGuardados();
   });
 
   async function getResource(resource) {
@@ -70,6 +71,30 @@
       }
 
       panel.innerHTML = postulaciones.map(postulacionCard).join("");
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+
+  async function renderGuardados() {
+    const panel = document.querySelector("[data-supabase-guardados]");
+    const counter = document.querySelector("[data-supabase-guardados-count]");
+
+    if (!panel) return;
+
+    try {
+      const guardados = await getResource("guardados");
+
+      if (counter) {
+        counter.textContent = `${guardados.length} guardados`;
+      }
+
+      if (!guardados.length) {
+        panel.innerHTML = `<p class="page-lead">Aun no tienes empleos guardados desde Supabase.</p>`;
+        return;
+      }
+
+      panel.innerHTML = guardados.map(guardadoCard).join("");
     } catch (error) {
       console.warn(error);
     }
@@ -138,12 +163,20 @@
     if (postular) {
       postular.setAttribute("aria-label", `Postular a ${vacante.titulo}`);
       postular.href = `mis_postulaciones.html?vacante=${encodeURIComponent(vacante.id || vacante.titulo)}`;
+      postular.addEventListener("click", (event) => {
+        event.preventDefault();
+        runVacanteAction("postular", vacante.id, postular, "mis_postulaciones.html");
+      });
     }
 
     const guardar = document.querySelector("[data-detalle-guardar]");
     if (guardar) {
       guardar.setAttribute("aria-label", `Guardar ${vacante.titulo}`);
       guardar.href = `guardados.html?vacante=${encodeURIComponent(vacante.id || vacante.titulo)}`;
+      guardar.addEventListener("click", (event) => {
+        event.preventDefault();
+        runVacanteAction("guardar", vacante.id, guardar, "guardados.html");
+      });
     }
 
     document.title = `WorkBridge - ${vacante.titulo} - ${empresaNombre}`;
@@ -193,6 +226,69 @@
         <a class="btn btn-secondary" href="status_postulacion.html">Ver estado</a>
       </article>
     `;
+  }
+
+  function guardadoCard(guardado, index) {
+    const vacante = guardado.vacantes || {};
+    const empresa = vacante.empresas?.nombre || "Empresa WorkBridge";
+    const requisitos = Array.isArray(vacante.requisitos) ? vacante.requisitos : [];
+    const badge = requisitos[0] || "Guardado";
+    const iconClass = index % 2 === 0 ? "job-icon cyan" : "job-icon";
+    const inicial = (empresa[0] || "W").toUpperCase();
+
+    return `
+      <article class="guardado-card">
+        <div class="${iconClass}">${escapeHtml(inicial)}</div>
+        <div class="guardado-info">
+          <strong>${escapeHtml(vacante.titulo || "Vacante WorkBridge")}</strong>
+          <span>${escapeHtml(empresa)} - ${escapeHtml(vacante.ubicacion || "Lima")}</span>
+          <span>${escapeHtml(vacante.modalidad || "Modalidad por definir")} - ${escapeHtml(vacante.salario || "Sueldo a tratar")}</span>
+        </div>
+        <div class="guardado-acciones">
+          <span class="badge">${escapeHtml(badge)}</span>
+          <a class="btn btn-secondary" href="detalle_empleo.html?id=${encodeURIComponent(vacante.id || "")}">Ver detalle</a>
+        </div>
+      </article>
+    `;
+  }
+
+  async function runVacanteAction(action, vacanteId, button, redirectTo) {
+    if (!vacanteId || String(vacanteId).startsWith("demo-")) {
+      window.location.href = redirectTo;
+      return;
+    }
+
+    const originalText = button.textContent;
+    button.textContent = action === "guardar" ? "Guardando..." : "Postulando...";
+    button.setAttribute("aria-busy", "true");
+
+    try {
+      const response = await fetch("/.netlify/functions/supabase", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ action, vacanteId }),
+      });
+      const payload = await response.json();
+
+      if (!response.ok) {
+        throw new Error(payload.error || "No se pudo completar la accion.");
+      }
+
+      button.textContent = action === "guardar" ? "Guardado" : "Postulacion enviada";
+      setTimeout(() => {
+        window.location.href = redirectTo;
+      }, 650);
+    } catch (error) {
+      console.warn(error);
+      button.textContent = "Intenta otra vez";
+      button.removeAttribute("aria-busy");
+
+      setTimeout(() => {
+        button.textContent = originalText;
+      }, 1800);
+    }
   }
 
   function getStatusClass(status, index) {

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lista de empleos aplicados por el postulante en WorkBridge.">
+  <title>WorkBridge - Mis Postulaciones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="dashboard-body postulante-body">
+  <aside class="sidebar" aria-label="Menu postulante">
+    <a class="brand sidebar-brand" href="../../index.html">
+      <span class="brand-mark">WB</span>
+      <span>WorkBridge</span>
+    </a>
+
+    <nav class="sidebar-nav">
+      <a href="../../index.html">Inicio</a>
+      <a href="../profile/perfil_postulante.html">Mi perfil</a>
+      <a href="hub_postulante.html">Buscar empleos</a>
+      <a href="guardados.html">Mis guardados</a>
+      <a class="active" href="mis_postulaciones.html">Mis postulaciones</a>
+      <a href="status_postulacion.html">Seguimiento</a>
+        <a href="../assistant/assistant.html">Asistente IA</a>
+      <a href="../auth/login.html">Salir</a>
+    </nav>
+
+    <div class="sidebar-note">
+      <span>Postulante demo</span>
+      <strong>Jose Mamani</strong>
+      <small>20 anos - San Juan de Lurigancho</small>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+    <header class="dashboard-top">
+      <div>
+        <p class="eyebrow">Modulo postulante</p>
+        <h1>Mis postulaciones</h1>
+        <p class="page-lead">Lista de empleos aplicados con estado, fecha, vacante y empresa.</p>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-secondary" href="../../index.html#empleos">Buscar empleos</a>
+        <a class="btn btn-primary" href="status_postulacion.html">Ver seguimiento</a>
+      </div>
+    </header>
+
+    <section class="metric-grid" aria-label="Resumen de postulaciones">
+      <article class="metric-card">
+        <span>Postulaciones enviadas</span>
+        <strong>8</strong>
+        <small>3 esta semana</small>
+      </article>
+      <article class="metric-card">
+        <span>Vistas por empresas</span>
+        <strong>5</strong>
+        <small>62% de respuesta inicial</small>
+      </article>
+      <article class="metric-card">
+        <span>En entrevista</span>
+        <strong>2</strong>
+        <small>Una entrevista hoy</small>
+      </article>
+      <article class="metric-card">
+        <span>Guardadas</span>
+        <strong>11</strong>
+        <small>Para postular despues</small>
+      </article>
+    </section>
+
+    <section class="dash-panel">
+      <div class="panel-title-row">
+        <div>
+          <h2>Empleos aplicados</h2>
+          <p>Cards con estado, fecha de postulacion, vacante y empresa.</p>
+        </div>
+        <select class="filter-select" aria-label="Filtrar postulaciones">
+          <option>Todas</option>
+          <option>Enviada</option>
+          <option>Vista</option>
+          <option>Entrevista</option>
+          <option>Contratado</option>
+        </select>
+      </div>
+
+      <div class="applications-grid">
+        <article class="application-card">
+          <div class="application-head">
+            <span class="status new">Enviada</span>
+            <small>16/06/2026</small>
+          </div>
+          <h3>Asistente de tienda</h3>
+          <p>MiniMarket Sol - Ate</p>
+          <ul>
+            <li>Part-time tarde</li>
+            <li>S/ 850 mensual</li>
+            <li>Acepta postulantes sin experiencia</li>
+          </ul>
+          <a class="btn btn-secondary" href="status_postulacion.html">Ver estado</a>
+        </article>
+
+        <article class="application-card featured">
+          <div class="application-head">
+            <span class="status process">Entrevista</span>
+            <small>15/06/2026</small>
+          </div>
+          <h3>Mozo junior</h3>
+          <p>Cevicheria Don Jose - Miraflores</p>
+          <ul>
+            <li>Turno tarde</li>
+            <li>S/ 900 mensual</li>
+            <li>Entrevista programada a las 5:00 p.m.</li>
+          </ul>
+          <a class="btn btn-primary" href="status_postulacion.html">Revisar linea de tiempo</a>
+        </article>
+
+        <article class="application-card">
+          <div class="application-head">
+            <span class="status live">Vista</span>
+            <small>14/06/2026</small>
+          </div>
+          <h3>Auxiliar de almacen</h3>
+          <p>Logistica Peru Express - La Molina</p>
+          <ul>
+            <li>Tiempo completo</li>
+            <li>S/ 1,100 mensual</li>
+            <li>Empresa reviso tu perfil</li>
+          </ul>
+          <a class="btn btn-secondary" href="status_postulacion.html">Ver estado</a>
+        </article>
+
+        <article class="application-card">
+          <div class="application-head">
+            <span class="status paused">Descartada</span>
+            <small>12/06/2026</small>
+          </div>
+          <h3>Recepcion junior</h3>
+          <p>Centro Medico Sur - Villa El Salvador</p>
+          <ul>
+            <li>Turno manana</li>
+            <li>Requeria disponibilidad inmediata</li>
+            <li>Puedes postular a ofertas similares</li>
+          </ul>
+          <a class="btn btn-secondary" href="../../index.html#empleos">Buscar similares</a>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

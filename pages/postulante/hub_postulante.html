@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hub de postulante WorkBridge con feed de empleos, filtros, guardados y acceso a postulaciones.">
+  <title>WorkBridge - Hub postulante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/wb_hub_postulante.css">
+</head>
+<body class="dashboard-body">
+
+  <aside class="sidebar" aria-label="Menu postulante">
+    <a class="brand sidebar-brand" href="../../index.html">
+      <span class="brand-mark">WB</span>
+      <span>WorkBridge</span>
+    </a>
+
+      <nav class="sidebar-nav" aria-label="Navegacion principal">
+        <a href="../../index.html">Inicio</a>
+        <a href="../profile/perfil_postulante.html">Mi perfil</a>
+        <a class="active" href="hub_postulante.html">Buscar empleos</a>
+        <a href="guardados.html">Mis guardados</a>
+        <a href="mis_postulaciones.html">Mis postulaciones</a>
+        <a href="status_postulacion.html">Seguimiento</a>
+        <a href="../assistant/assistant.html">Asistente IA</a>
+        <a href="../auth/login.html">Salir</a>
+      </nav>
+
+    <div class="sidebar-note">
+      <span>Postulante demo</span>
+      <strong>Jose Mamani</strong>
+      <small>20 anos - San Juan de Lurigancho</small>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+
+    <header class="dashboard-top">
+      <div>
+        <h1>Buscar empleos</h1>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-secondary" href="guardados.html">Mis guardados</a>
+        <a class="btn btn-secondary" href="mis_postulaciones.html">Mis postulaciones</a>
+        <a class="btn btn-secondary" href="../assistant/assistant.html">Asistente IA</a>
+        <a class="btn btn-primary" href="../../index.html">Volver al inicio</a>
+      </div>
+    </header>
+
+    <div class="busqueda-barra">
+      <input type="search" placeholder="Buscar por cargo, empresa o distrito..." aria-label="Buscar empleos">
+      <button class="btn btn-primary btn-large">Buscar</button>
+    </div>
+
+    <div class="busqueda-grid">
+
+      <aside class="filtros-panel" aria-label="Filtros de busqueda">
+        <h2 class="filtro-titulo filtro-titulo-sep">Filtros</h2>
+
+        <div class="filtro-grupo">
+          <p class="filtro-titulo">Distrito</p>
+          <select class="filtro-select" aria-label="Filtrar por distrito">
+            <option value="">Todos los distritos</option>
+            <option>Miraflores</option>
+            <option>San Isidro</option>
+            <option>Ate</option>
+            <option>La Molina</option>
+            <option>San Juan de Lurigancho</option>
+            <option>Villa El Salvador</option>
+            <option>Surco</option>
+            <option>Lince</option>
+          </select>
+        </div>
+
+        <div class="filtro-grupo">
+          <p class="filtro-titulo">Experiencia</p>
+          <label class="filtro-check">
+            <input type="checkbox"> Solo sin experiencia
+          </label>
+        </div>
+
+        <div class="filtro-grupo">
+          <p class="filtro-titulo">Jornada</p>
+          <label class="filtro-check">
+            <input type="checkbox"> Tiempo completo
+          </label>
+          <label class="filtro-check">
+            <input type="checkbox"> Part-time
+          </label>
+          <label class="filtro-check">
+            <input type="checkbox"> Practicas
+          </label>
+        </div>
+
+        <div class="filtro-grupo">
+          <p class="filtro-titulo">Sueldo minimo</p>
+          <select class="filtro-select" aria-label="Filtrar por sueldo">
+            <option value="">Cualquier sueldo</option>
+            <option>S/ 800 o mas</option>
+            <option>S/ 900 o mas</option>
+            <option>S/ 1,000 o mas</option>
+            <option>S/ 1,200 o mas</option>
+          </select>
+        </div>
+      </aside>
+
+      <section aria-label="Resultados de busqueda">
+        <div class="resultado-top">
+          <h2>Resultado de empleos</h2>
+          <span class="badge">6 empleos encontrados</span>
+        </div>
+
+        <div class="resultados-panel">
+
+          <a class="resultado-card" href="detalle_empleo.html" aria-label="Ver detalle de Mozo junior">
+            <div class="job-icon cyan">M</div>
+            <div class="resultado-info">
+              <strong>Mozo junior</strong>
+              <span>Cevicheria Don Jose - Miraflores</span>
+              <span>Part-time - S/ 900 - Turno tarde</span>
+            </div>
+            <span class="badge">Sin experiencia</span>
+            <span class="resultado-accion">Ver detalle -></span>
+          </a>
+
+          <a class="resultado-card" href="detalle_empleo.html" aria-label="Ver detalle de Asistente de tienda">
+            <div class="job-icon">A</div>
+            <div class="resultado-info">
+              <strong>Asistente de tienda</strong>
+              <span>Tiendas Lima Center - Ate</span>
+              <span>Part-time - S/ 850 - Turno manana</span>
+            </div>
+            <span class="badge">Sin experiencia</span>
+            <span class="resultado-accion">Ver detalle -></span>
+          </a>
+
+          <a class="resultado-card" href="detalle_empleo.html" aria-label="Ver detalle de Auxiliar de almacen">
+            <div class="job-icon">L</div>
+            <div class="resultado-info">
+              <strong>Auxiliar de almacen</strong>
+              <span>Logistica Express SAC - La Molina</span>
+              <span>Tiempo completo - S/ 1,100 - Lunes a sabado</span>
+            </div>
+            <span class="badge">Sin experiencia</span>
+            <span class="resultado-accion">Ver detalle -></span>
+          </a>
+
+          <a class="resultado-card" href="detalle_empleo.html" aria-label="Ver detalle de Recepcionista junior">
+            <div class="job-icon cyan">C</div>
+            <div class="resultado-info">
+              <strong>Recepcionista junior</strong>
+              <span>Clinica San Rafael - San Isidro</span>
+              <span>Tiempo completo - S/ 1,025 - Lunes a viernes</span>
+            </div>
+            <span class="badge">Sin experiencia</span>
+            <span class="resultado-accion">Ver detalle -></span>
+          </a>
+
+          <a class="resultado-card" href="detalle_empleo.html" aria-label="Ver detalle de Ayudante de cocina">
+            <div class="job-icon">R</div>
+            <div class="resultado-info">
+              <strong>Ayudante de cocina</strong>
+              <span>Restaurante El Rincon - Surco</span>
+              <span>Part-time - S/ 800 - Turno noche</span>
+            </div>
+            <span class="badge">Sin experiencia</span>
+            <span class="resultado-accion">Ver detalle -></span>
+          </a>
+
+          <a class="resultado-card" href="detalle_empleo.html" aria-label="Ver detalle de Soporte administrativo">
+            <div class="job-icon cyan">E</div>
+            <div class="resultado-info">
+              <strong>Soporte administrativo</strong>
+              <span>Estudio Contable Torres - San Juan de Lurigancho</span>
+              <span>Practicas - S/ 1,025 - Lunes a viernes manana</span>
+            </div>
+            <span class="badge cyan">Practicas</span>
+            <span class="resultado-accion">Ver detalle -></span>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
+

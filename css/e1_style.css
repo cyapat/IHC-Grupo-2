@@ -1,0 +1,543 @@
+/* CSS para Épica E1: Perfil Digital */
+@import url('https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+  color: #1f2937;
+}
+
+/* --- ESTILOS DE LAYOUT (HEREDADOS DE E4) --- */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 250px;
+  background: #111827;
+  color: white;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  font-size: 0.8rem;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu a {
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.menu a.active,
+.menu a:hover {
+  background: #2563eb;
+  color: white;
+}
+
+.sidebar-note {
+  margin-top: auto;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-note span,
+.sidebar-note small {
+  display: block;
+  color: #94a3b8;
+}
+
+.sidebar-note strong {
+  display: block;
+  margin: 5px 0;
+  color: #ffffff;
+}
+
+.main {
+  flex: 1;
+  padding: 26px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.topbar h1 {
+  font-size: 26px;
+}
+
+.tag {
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.panel {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  margin-bottom: 22px;
+}
+
+.panel h2 {
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+
+/* Formularios */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group.full {
+  grid-column: 1 / 3;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+  outline: none;
+  background: white;
+  transition: border-color 0.2s ease;
+}
+
+textarea {
+  min-height: 95px;
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2563eb;
+}
+
+.btn {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 14px;
+  font-size: 15px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+}
+
+.btn-secondary {
+  background: #111827;
+}
+
+.btn-secondary:hover {
+  background: #1f2937;
+}
+
+/* --- ESTILOS ESPECÍFICOS DE ACCESO (LOGIN/REGISTRO) --- */
+.auth-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* Modificador para el orden en Iniciar Sesión (Formulario a la derecha) */
+.auth-container.login-order .auth-form-column {
+  order: 2;
+}
+
+.auth-container.login-order .auth-splash-column {
+  order: 1;
+}
+
+/* Columna de Formulario */
+.auth-form-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #f4f6fb;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+}
+
+.auth-card h2 {
+  margin-bottom: 8px;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.auth-card p.subtitle {
+  color: #64748b;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+/* Selector de Rol (Postulante / Empresa) */
+.role-selector {
+  display: flex;
+  background: #f1f5f9;
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.role-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.role-btn.active {
+  background: #2563eb;
+  color: white;
+}
+
+/* Contenedores dinámicos del Formulario */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Columna Splash Oscura */
+.auth-splash-column {
+  background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.15), transparent 30rem), #111827;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.splash-content {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.splash-brand {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.splash-brand span {
+  color: #2563eb;
+}
+
+.splash-content h1 {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.splash-content p {
+  font-size: 16px;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.auth-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.auth-footer a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Alertas de Error/Éxito */
+.alert-msg {
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: none;
+}
+
+.alert-msg.error {
+  display: block;
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.alert-msg.success {
+  display: block;
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+/* --- ESTILOS DE EDICIÓN DE PERFIL --- */
+.profile-avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px dashed #cbd5e1;
+}
+
+.current-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2563eb;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.avatar-selection-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+.avatar-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.avatar-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.avatar-option:hover {
+  transform: scale(1.1);
+}
+
+.avatar-option.selected {
+  border-color: #2563eb;
+  transform: scale(1.1);
+}
+
+.file-upload-label {
+  font-size: 13px;
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.file-upload-label:hover {
+  text-decoration: underline;
+}
+
+#file-avatar {
+  display: none;
+}
+
+/* Habilidades Habilitadas (Tags) */
+.skills-input-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.skills-input-wrapper input {
+  flex: 1;
+}
+
+.skills-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  min-height: 40px;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.skills-tags-container:empty::before {
+  content: "Ninguna habilidad agregada aún.";
+  font-size: 14px;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.skill-tag .remove-btn {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.skill-tag .remove-btn:hover {
+  color: #b91c1c;
+}
+
+/* --- RESPONSIVIDAD --- */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .sidebar small {
+    text-align: center;
+  }
+
+  .menu {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 12px;
+  }
+
+  .menu a {
+    white-space: nowrap;
+  }
+
+  .auth-container {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-splash-column {
+    display: none; /* Ocultar el splash en dispositivos móviles para priorizar el formulario */
+  }
+
+  .auth-container.login-order .auth-form-column {
+    order: 1;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full {
+    grid-column: auto;
+  }
+}

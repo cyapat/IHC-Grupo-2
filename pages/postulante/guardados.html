@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mis empleos guardados en WorkBridge. Revisa y gestiona tus favoritos.">
+  <title>WorkBridge - Mis empleos guardados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/wb_guardados.css">
+</head>
+<body class="dashboard-body">
+
+  <aside class="sidebar" aria-label="Menu postulante">
+    <a class="brand sidebar-brand" href="../../index.html">
+      <span class="brand-mark">WB</span>
+      <span>WorkBridge</span>
+    </a>
+
+    <nav class="sidebar-nav" aria-label="Navegacion principal">
+      <a href="../../index.html">Inicio</a>
+      <a href="../profile/perfil_postulante.html">Mi perfil</a>
+      <a href="hub_postulante.html">Buscar empleos</a>
+      <a class="active" href="guardados.html">Mis guardados</a>
+      <a href="mis_postulaciones.html">Mis postulaciones</a>
+      <a href="status_postulacion.html">Seguimiento</a>
+        <a href="../assistant/assistant.html">Asistente IA</a>
+      <a href="../auth/login.html">Salir</a>
+    </nav>
+
+    <div class="sidebar-note">
+      <span>Postulante demo</span>
+      <strong>Jose Mamani</strong>
+      <small>20 anos - San Juan de Lurigancho</small>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+
+    <a class="volver-link" href="hub_postulante.html" aria-label="Volver a busqueda">← Volver a busqueda</a>
+
+    <header class="dashboard-top">
+      <div>
+        <h1>Mis empleos guardados</h1>
+      </div>
+      <div class="top-actions">
+      <a class="btn btn-primary" href="hub_postulante.html">Buscar mas empleos</a>
+      </div>
+    </header>
+
+    <div class="guardados-count">
+      <h2>Empleos guardados</h2>
+      <span class="badge">3 guardados</span>
+    </div>
+
+    <div class="guardados-lista">
+
+      <article class="guardado-card">
+        <div class="job-icon cyan">M</div>
+        <div class="guardado-info">
+          <strong>Mozo junior</strong>
+          <span>Cevicheria Don Jose · Miraflores</span>
+          <span>Part-time · S/ 900</span>
+        </div>
+        <div class="guardado-acciones">
+          <span class="badge">Sin experiencia</span>
+          <a class="btn btn-secondary" href="detalle_empleo.html">Ver detalle</a>
+          <a class="btn-eliminar" href="guardados.html" aria-label="Eliminar Mozo junior de guardados">✕</a>
+        </div>
+      </article>
+
+      <article class="guardado-card">
+        <div class="job-icon">A</div>
+        <div class="guardado-info">
+          <strong>Asistente de tienda</strong>
+          <span>Tiendas Lima Center · Ate</span>
+          <span>Part-time · S/ 850</span>
+        </div>
+        <div class="guardado-acciones">
+          <span class="badge">Sin experiencia</span>
+          <a class="btn btn-secondary" href="detalle_empleo.html">Ver detalle</a>
+          <a class="btn-eliminar" href="guardados.html" aria-label="Eliminar Asistente de tienda de guardados">✕</a>
+        </div>
+      </article>
+
+      <article class="guardado-card">
+        <div class="job-icon cyan">E</div>
+        <div class="guardado-info">
+          <strong>Soporte administrativo</strong>
+          <span>Estudio Contable Torres · San Juan de Lurigancho</span>
+          <span>Practicas · S/ 1,025</span>
+        </div>
+        <div class="guardado-acciones">
+          <span class="badge cyan">Practicas</span>
+          <a class="btn btn-secondary" href="detalle_empleo.html">Ver detalle</a>
+          <a class="btn-eliminar" href="guardados.html" aria-label="Eliminar Soporte administrativo de guardados">✕</a>
+        </div>
+      </article>
+
+    </div>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Asistente de inteligencia artificial de WorkBridge para orientar postulantes y empresas.">
+  <title>WorkBridge - Asistente IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="dashboard-body">
+
+  <aside class="sidebar" aria-label="Menu WorkBridge IA">
+    <a class="brand sidebar-brand" href="../../index.html">
+      <span class="brand-mark">WB</span>
+      <span>WorkBridge</span>
+    </a>
+
+    <nav class="sidebar-nav" aria-label="Navegacion principal">
+      <a href="../../index.html">Inicio</a>
+      <a href="../profile/perfil_postulante.html">Mi perfil</a>
+      <a href="../postulante/hub_postulante.html">Buscar empleos</a>
+      <a href="../postulante/mis_postulaciones.html">Mis postulaciones</a>
+      <a class="active" href="assistant.html">Asistente IA</a>
+      <a href="../empresa/panel.html">Panel empresa</a>
+      <a href="../auth/login.html">Salir</a>
+    </nav>
+
+    <div class="sidebar-note">
+      <span>IA generativa</span>
+      <strong>WorkBridge IA</strong>
+      <small>Orientacion para postulantes y empresas</small>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+    <header class="dashboard-top">
+      <div>
+        <h1>Asistente IA</h1>
+        <p>Recibe ayuda para mejorar perfiles, preparar postulaciones y redactar vacantes.</p>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-secondary" href="../postulante/hub_postulante.html">Ver empleos</a>
+        <a class="btn btn-primary" href="../empresa/gestion_vacantes.html#vacantes">Crear vacante</a>
+      </div>
+    </header>
+
+    <section class="ai-layout" aria-label="Asistente de inteligencia artificial">
+      <article class="ai-panel">
+        <div class="ai-panel-head">
+          <span class="badge cyan">OpenAI</span>
+          <h2>WorkBridge IA</h2>
+          <p>Pregunta sobre perfil, entrevista, postulaciones o redaccion de vacantes.</p>
+        </div>
+
+        <div id="aiChat" class="ai-chat" aria-live="polite">
+          <div class="ai-message ai-message-bot">
+            <strong>WorkBridge IA</strong>
+            <p>Hola. Puedo ayudarte a mejorar tu perfil, sugerir empleos segun tus habilidades o redactar una vacante clara para jovenes postulantes.</p>
+          </div>
+        </div>
+
+        <form id="aiForm" class="ai-form">
+          <label for="aiPrompt">Mensaje</label>
+          <textarea id="aiPrompt" rows="4" placeholder="Ejemplo: ayudame a mejorar mi perfil para postular a atencion al cliente" required></textarea>
+          <div class="ai-actions">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+            <button class="btn btn-secondary" type="button" id="aiClear">Limpiar</button>
+          </div>
+          <p id="aiStatus" class="ai-status" role="status"></p>
+        </form>
+      </article>
+
+      <aside class="ai-suggestions" aria-label="Preguntas sugeridas">
+        <h2>Ideas rapidas</h2>
+        <button type="button" data-prompt="Mejora este resumen para mi perfil: soy estudiante, busco mi primer empleo y tengo disponibilidad part-time.">Mejorar perfil</button>
+        <button type="button" data-prompt="Sugiere empleos de entrada para una persona sin experiencia que vive en Lima Norte.">Sugerir empleos</button>
+        <button type="button" data-prompt="Prepara respuestas para una entrevista de asistente de tienda sin experiencia previa.">Preparar entrevista</button>
+        <button type="button" data-prompt="Redacta una vacante breve para contratar un mozo junior part-time en Miraflores.">Redactar vacante</button>
+      </aside>
+    </section>
+  </main>
+
+  <script type="module" src="../../js/assistant/assistant.js"></script>
+</body>
+</html>

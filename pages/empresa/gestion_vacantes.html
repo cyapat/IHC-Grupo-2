@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Módulo E4 de WorkBridge para publicar vacantes y gestionar mensajes entre empresa y postulante.">
+  <title>WorkBridge | Gestión de Vacantes</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body class="e4-body">
+  <div class="e4-layout">
+    <aside class="e4-sidebar" aria-label="Menú de gestión de vacantes">
+      <a class="brand sidebar-brand" href="../../index.html">
+        <span class="brand-mark">WB</span>
+        <span>WorkBridge</span>
+      </a>
+
+      <nav class="e4-menu">
+        <a class="e4-menu-link" href="panel.html">Panel general</a>
+        <a class="e4-menu-link" href="panel.html#postulantes">Postulantes</a>
+        <a class="e4-menu-link" href="panel.html#proceso">En proceso</a>
+        <a class="e4-menu-link" href="panel.html#contratados">Contratados</a>
+        <a class="e4-menu-link" href="panel.html#vacantes">Vacantes</a>
+        <button class="active" onclick="mostrarSeccion('vacantes', this)">Publicar</button>
+        <button onclick="mostrarSeccion('mensajes', this)">Mensajes</button>
+      </nav>
+
+      <div class="e4-sidebar-note">
+        <span>Empresa demo</span>
+        <strong>Constructora Nova</strong>
+        <small>Lima Metropolitana</small>
+      </div>
+    </aside>
+
+    <main class="e4-main">
+      <header class="e4-topbar">
+        <div>
+          <p class="eyebrow">Empresa empleadora</p>
+          <h1>Panel de empresa</h1>
+        </div>
+      </header>
+
+      <section class="e4-cards" aria-label="Resumen de gestión">
+        <article class="e4-card">
+          <h3>Vacantes publicadas</h3>
+          <p id="contadorVacantes">2</p>
+        </article>
+        <article class="e4-card">
+          <h3>Postulantes recibidos</h3>
+          <p>34</p>
+        </article>
+        <article class="e4-card">
+          <h3>Mensajes activos</h3>
+          <p>3</p>
+        </article>
+        <article class="e4-card">
+          <h3>Entrevistas</h3>
+          <p>5</p>
+        </article>
+      </section>
+
+      <!-- SECCIÓN VACANTES -->
+      <section id="vacantes" class="e4-section active">
+        <article class="e4-panel">
+          <div class="e4-panel-header">
+            <div>
+              <h2>Publicar nueva vacante</h2>
+              <p>Completa los datos principales para crear una oferta laboral visible para postulantes.</p>
+            </div>
+          </div>
+
+          <form id="formVacante">
+            <div class="e4-form-grid">
+              <div class="e4-form-group">
+                <label for="titulo">Título de la vacante</label>
+                <input type="text" id="titulo" placeholder="Ej. Asistente administrativo" required>
+              </div>
+
+              <div class="e4-form-group">
+                <label for="distrito">Distrito</label>
+                <select id="distrito" required>
+                  <option value="">Seleccionar distrito</option>
+                  <option>Los Olivos</option>
+                  <option>Independencia</option>
+                  <option>San Martín de Porres</option>
+                  <option>Comas</option>
+                  <option>Lima Centro</option>
+                </select>
+              </div>
+
+              <div class="e4-form-group">
+                <label for="jornada">Jornada</label>
+                <select id="jornada" required>
+                  <option value="">Seleccionar jornada</option>
+                  <option>Tiempo completo</option>
+                  <option>Medio tiempo</option>
+                  <option>Part-time</option>
+                  <option>Prácticas</option>
+                </select>
+              </div>
+
+              <div class="e4-form-group">
+                <label for="sueldo">Sueldo</label>
+                <input type="text" id="sueldo" placeholder="Ej. S/ 1200 - S/ 1500" required>
+              </div>
+
+              <div class="e4-form-group e4-full">
+                <label for="requisitos">Requisitos</label>
+                <textarea id="requisitos" placeholder="Ej. Manejo de Excel, buena comunicación, disponibilidad inmediata." required></textarea>
+              </div>
+
+              <div class="e4-form-group e4-full">
+                <label for="preguntas">Preguntas de descarte</label>
+                <textarea id="preguntas" placeholder="Ej. ¿Tienes disponibilidad inmediata&#10;¿Cuentas con experiencia previa&#10;¿En qué distrito resides" required></textarea>
+              </div>
+            </div>
+
+            <button class="e4-btn" type="submit">Publicar vacante</button>
+          </form>
+        </article>
+
+        <article class="e4-panel">
+          <div class="e4-panel-header">
+            <div>
+              <h2>Vacantes publicadas</h2>
+              <p>Listado de ofertas creadas por la empresa.</p>
+            </div>
+          </div>
+
+          <div class="e4-vacantes-lista" id="listaVacantes">
+            <article class="e4-vacante">
+              <div class="e4-vacante-header">
+                <h3>Auxiliar administrativo</h3>
+                <span class="e4-estado">Activa</span>
+              </div>
+              <p class="e4-detalle">Los Olivos · Tiempo completo · S/ 1300</p>
+              <p>Requisitos: manejo básico de Excel, comunicación efectiva y disponibilidad inmediata.</p>
+              <ol class="e4-preguntas">
+                <li>¿Tienes experiencia en atención al cliente</li>
+                <li>¿Tienes disponibilidad para trabajar presencial</li>
+              </ol>
+            </article>
+
+            <article class="e4-vacante">
+              <div class="e4-vacante-header">
+                <h3>Practicante de recursos humanos</h3>
+                <span class="e4-estado">Activa</span>
+              </div>
+              <p class="e4-detalle">Lima Centro · Prácticas · S/ 800</p>
+              <p>Requisitos: estudiante técnico o universitario, actitud proactiva y manejo de documentos.</p>
+              <ol class="e4-preguntas">
+                <li>¿Qué ciclo estás cursando</li>
+                <li>¿Puedes trabajar 30 horas semanales</li>
+              </ol>
+            </article>
+          </div>
+        </article>
+      </section>
+
+      <!-- SECCIÓN MENSAJES -->
+      <section id="mensajes" class="e4-section">
+        <div class="e4-mensajes-layout">
+          <aside class="e4-conversaciones" aria-label="Lista de conversaciones">
+            <h2>Conversaciones</h2>
+
+            <div class="e4-conversacion active" onclick="cambiarChat('Lucía Torres', 'Postulante a Auxiliar administrativo', this)">
+              <h4>Lucía Torres</h4>
+              <p>Postulante a Auxiliar administrativo</p>
+            </div>
+
+            <div class="e4-conversacion" onclick="cambiarChat('Miguel Ramos', 'Postulante a Practicante RR.HH.', this)">
+              <h4>Miguel Ramos</h4>
+              <p>Postulante a Practicante RR.HH.</p>
+            </div>
+
+            <div class="e4-conversacion" onclick="cambiarChat('Andrea Salazar', 'Consulta sobre horario', this)">
+              <h4>Andrea Salazar</h4>
+              <p>Consulta sobre horario</p>
+            </div>
+          </aside>
+
+          <article class="e4-chat">
+            <div class="e4-chat-header">
+              <div>
+                <h2 id="nombreChat">Lucía Torres</h2>
+                <p id="detalleChat">Postulante a Auxiliar administrativo</p>
+              </div>
+              <span class="e4-estado">Activa</span>
+            </div>
+
+            <div class="e4-historial" id="historialMensajes">
+              <div class="e4-mensaje e4-postulante">
+                Buenas tardes, quisiera saber si la vacante sigue disponible.
+              </div>
+              <div class="e4-mensaje e4-empresa">
+                Buenas tardes, sí. La vacante sigue activa. ¿Tienes disponibilidad inmediata
+              </div>
+              <div class="e4-mensaje e4-postulante">
+                Sí, puedo empezar esta semana.
+              </div>
+            </div>
+
+            <div class="e4-enviar">
+              <input type="text" id="nuevoMensaje" placeholder="Escribe un mensaje para el postulante...">
+              <button class="e4-btn e4-btn-dark" onclick="enviarMensaje()">Enviar</button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../../js/empresa/e4_gestion_vacantes.js"></script>
+</body>
+</html>

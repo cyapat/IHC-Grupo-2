@@ -1647,3 +1647,145 @@ td a {
     grid-template-columns: 1fr;
   }
 }
+
+.ai-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+.ai-panel,
+.ai-suggestions {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.ai-panel {
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-panel-head {
+  padding: 24px 24px 12px;
+}
+
+.ai-panel-head h2,
+.ai-suggestions h2 {
+  margin: 10px 0 8px;
+}
+
+.ai-panel-head p,
+.ai-suggestions p {
+  color: var(--muted);
+}
+
+.ai-chat {
+  min-height: 320px;
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 24px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--soft);
+}
+
+.ai-message {
+  max-width: 82%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.ai-message-user {
+  align-self: flex-end;
+  background: #dbeafe;
+  border-color: #bfdbfe;
+}
+
+.ai-message-bot {
+  align-self: flex-start;
+}
+
+.ai-message strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.ai-message p {
+  margin: 0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.ai-form {
+  display: grid;
+  gap: 12px;
+  padding: 20px 24px 24px;
+}
+
+.ai-form label {
+  font-weight: 800;
+}
+
+.ai-form textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  font: inherit;
+}
+
+.ai-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ai-status {
+  min-height: 22px;
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.ai-suggestions {
+  padding: 22px;
+}
+
+.ai-suggestions button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ai-suggestions button:hover {
+  border-color: var(--blue);
+  background: #eff6ff;
+}
+
+@media (max-width: 900px) {
+  .ai-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-message {
+    max-width: 100%;
+  }
+}

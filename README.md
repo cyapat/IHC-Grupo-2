@@ -87,6 +87,8 @@ OPENAI_API_KEY=tu_clave
 
 La base de datos provisional esta documentada en `supabase/schema.sql`. Ese archivo se ejecuta en el SQL Editor de Supabase y crea tablas demo para usuarios, perfiles, empresas, vacantes, postulaciones, guardados y mensajes.
 
+Para actualizar solo las vacantes del demo sin recrear toda la base, ejecutar `supabase/demo-vacantes.sql`. Ese script deja 5 empleos con empresas, rubros, sueldos, ubicaciones y descripciones diferenciadas.
+
 La funcion `netlify/functions/supabase.js` consulta Supabase desde Netlify y la capa frontend `js/supabase/workbridge-data.js` muestra datos reales en:
 
 - `pages/postulante/hub_postulante.html`

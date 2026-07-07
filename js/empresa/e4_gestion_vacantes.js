@@ -43,7 +43,7 @@ function mostrarSeccion(id, boton) {
           <h3>${titulo}</h3>
           <span class="e4-estado">Activa</span>
         </div>
-        <p class="e4-detalle">${distrito} · ${jornada} · ${sueldo}</p>
+        <p class="e4-detalle">${distrito} - ${jornada} - ${sueldo}</p>
         <p>Requisitos: ${requisitos}</p>
         <ol class="e4-preguntas">${preguntas}</ol>
       `;

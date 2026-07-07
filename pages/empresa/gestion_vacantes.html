@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Módulo E4 de WorkBridge para publicar vacantes y gestionar mensajes entre empresa y postulante.">
-  <title>WorkBridge | Gestión de Vacantes</title>
+  <meta name="description" content="Modulo E4 de WorkBridge para publicar vacantes y gestionar mensajes entre empresa y postulante.">
+  <title>WorkBridge | Gestion de Vacantes</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body class="e4-body">
   <div class="e4-layout">
-    <aside class="e4-sidebar" aria-label="Menú de gestión de vacantes">
+    <aside class="e4-sidebar" aria-label="Menu de gestion de vacantes">
       <a class="brand sidebar-brand" href="../../index.html">
         <span class="brand-mark">WB</span>
         <span>WorkBridge</span>
@@ -32,8 +32,8 @@
 
       <div class="e4-sidebar-note">
         <span>Empresa demo</span>
-        <strong>Constructora Nova</strong>
-        <small>Lima Metropolitana</small>
+        <strong>Comercial Andina</strong>
+        <small>Lima Centro</small>
       </div>
     </aside>
 
@@ -45,26 +45,25 @@
         </div>
       </header>
 
-      <section class="e4-cards" aria-label="Resumen de gestión">
+      <section class="e4-cards" aria-label="Resumen de gestion">
         <article class="e4-card">
           <h3>Vacantes publicadas</h3>
-          <p id="contadorVacantes">2</p>
+          <p id="contadorVacantes">5</p>
         </article>
         <article class="e4-card">
           <h3>Postulantes recibidos</h3>
-          <p>34</p>
+          <p>47</p>
         </article>
         <article class="e4-card">
           <h3>Mensajes activos</h3>
-          <p>3</p>
+          <p>5</p>
         </article>
         <article class="e4-card">
           <h3>Entrevistas</h3>
-          <p>5</p>
+          <p>4</p>
         </article>
       </section>
 
-      <!-- SECCIÓN VACANTES -->
       <section id="vacantes" class="e4-section active">
         <article class="e4-panel">
           <div class="e4-panel-header">
@@ -77,19 +76,19 @@
           <form id="formVacante">
             <div class="e4-form-grid">
               <div class="e4-form-group">
-                <label for="titulo">Título de la vacante</label>
-                <input type="text" id="titulo" placeholder="Ej. Asistente administrativo" required>
+                <label for="titulo">Titulo de la vacante</label>
+                <input type="text" id="titulo" placeholder="Ej. Asistente de atencion al cliente" required>
               </div>
 
               <div class="e4-form-group">
                 <label for="distrito">Distrito</label>
                 <select id="distrito" required>
                   <option value="">Seleccionar distrito</option>
-                  <option>Los Olivos</option>
-                  <option>Independencia</option>
-                  <option>San Martín de Porres</option>
-                  <option>Comas</option>
                   <option>Lima Centro</option>
+                  <option>Ate</option>
+                  <option>La Molina</option>
+                  <option>Miraflores</option>
+                  <option>San Isidro</option>
                 </select>
               </div>
 
@@ -97,10 +96,11 @@
                 <label for="jornada">Jornada</label>
                 <select id="jornada" required>
                   <option value="">Seleccionar jornada</option>
+                  <option>Presencial</option>
                   <option>Tiempo completo</option>
-                  <option>Medio tiempo</option>
                   <option>Part-time</option>
-                  <option>Prácticas</option>
+                  <option>Hibrido</option>
+                  <option>Practicas</option>
                 </select>
               </div>
 
@@ -111,12 +111,12 @@
 
               <div class="e4-form-group e4-full">
                 <label for="requisitos">Requisitos</label>
-                <textarea id="requisitos" placeholder="Ej. Manejo de Excel, buena comunicación, disponibilidad inmediata." required></textarea>
+                <textarea id="requisitos" placeholder="Ej. Buen trato al cliente, comunicacion clara, disponibilidad inmediata." required></textarea>
               </div>
 
               <div class="e4-form-group e4-full">
                 <label for="preguntas">Preguntas de descarte</label>
-                <textarea id="preguntas" placeholder="Ej. ¿Tienes disponibilidad inmediata&#10;¿Cuentas con experiencia previa&#10;¿En qué distrito resides" required></textarea>
+                <textarea id="preguntas" placeholder="Ej. Tienes disponibilidad inmediata&#10;Puedes trabajar presencial&#10;En que distrito resides" required></textarea>
               </div>
             </div>
 
@@ -128,80 +128,128 @@
           <div class="e4-panel-header">
             <div>
               <h2>Vacantes publicadas</h2>
-              <p>Listado de ofertas creadas por la empresa.</p>
+              <p>Listado de ofertas creadas por la empresa, alineadas al demo de Supabase.</p>
             </div>
           </div>
 
           <div class="e4-vacantes-lista" id="listaVacantes">
             <article class="e4-vacante">
               <div class="e4-vacante-header">
-                <h3>Auxiliar administrativo</h3>
+                <h3>Asistente de atencion al cliente</h3>
                 <span class="e4-estado">Activa</span>
               </div>
-              <p class="e4-detalle">Los Olivos · Tiempo completo · S/ 1300</p>
-              <p>Requisitos: manejo básico de Excel, comunicación efectiva y disponibilidad inmediata.</p>
+              <p class="e4-detalle">Lima Centro - Presencial - S/ 1200 - S/ 1500</p>
+              <p>Requisitos: buen trato al cliente, comunicacion clara, disponibilidad inmediata y manejo basico de computadora.</p>
               <ol class="e4-preguntas">
-                <li>¿Tienes experiencia en atención al cliente</li>
-                <li>¿Tienes disponibilidad para trabajar presencial</li>
+                <li>Puede trabajar presencial en Lima Centro</li>
+                <li>Tiene disponibilidad inmediata</li>
               </ol>
             </article>
 
             <article class="e4-vacante">
               <div class="e4-vacante-header">
-                <h3>Practicante de recursos humanos</h3>
+                <h3>Asistente de tienda part-time</h3>
                 <span class="e4-estado">Activa</span>
               </div>
-              <p class="e4-detalle">Lima Centro · Prácticas · S/ 800</p>
-              <p>Requisitos: estudiante técnico o universitario, actitud proactiva y manejo de documentos.</p>
+              <p class="e4-detalle">Ate - Part-time - S/ 850</p>
+              <p>Requisitos: responsabilidad, orden, puntualidad y disponibilidad por la tarde.</p>
               <ol class="e4-preguntas">
-                <li>¿Qué ciclo estás cursando</li>
-                <li>¿Puedes trabajar 30 horas semanales</li>
+                <li>Puede trabajar en turno tarde</li>
+                <li>Tiene comodidad atendiendo clientes en tienda</li>
+              </ol>
+            </article>
+
+            <article class="e4-vacante">
+              <div class="e4-vacante-header">
+                <h3>Auxiliar de almacen</h3>
+                <span class="e4-estado">Activa</span>
+              </div>
+              <p class="e4-detalle">La Molina - Tiempo completo - S/ 1100</p>
+              <p>Requisitos: orden, trabajo en equipo y disponibilidad de lunes a sabado para tareas operativas.</p>
+              <ol class="e4-preguntas">
+                <li>Puede realizar trabajo operativo de almacen</li>
+                <li>Tiene disponibilidad de lunes a sabado</li>
+              </ol>
+            </article>
+
+            <article class="e4-vacante">
+              <div class="e4-vacante-header">
+                <h3>Mozo junior</h3>
+                <span class="e4-estado">Activa</span>
+              </div>
+              <p class="e4-detalle">Miraflores - Part-time - S/ 900</p>
+              <p>Requisitos: actitud de servicio, buena comunicacion, disponibilidad fines de semana y ganas de aprender.</p>
+              <ol class="e4-preguntas">
+                <li>Puede trabajar fines de semana</li>
+                <li>Tiene interes en atencion de mesas</li>
+              </ol>
+            </article>
+
+            <article class="e4-vacante">
+              <div class="e4-vacante-header">
+                <h3>Recepcionista junior</h3>
+                <span class="e4-estado">Activa</span>
+              </div>
+              <p class="e4-detalle">San Isidro - Presencial - S/ 1025</p>
+              <p>Requisitos: trato amable, orden administrativo, comunicacion telefonica y disponibilidad de lunes a viernes.</p>
+              <ol class="e4-preguntas">
+                <li>Puede trabajar presencial en San Isidro</li>
+                <li>Tiene facilidad para orientar personas por telefono</li>
               </ol>
             </article>
           </div>
         </article>
       </section>
 
-      <!-- SECCIÓN MENSAJES -->
       <section id="mensajes" class="e4-section">
         <div class="e4-mensajes-layout">
           <aside class="e4-conversaciones" aria-label="Lista de conversaciones">
             <h2>Conversaciones</h2>
 
-            <div class="e4-conversacion active" onclick="cambiarChat('Lucía Torres', 'Postulante a Auxiliar administrativo', this)">
-              <h4>Lucía Torres</h4>
-              <p>Postulante a Auxiliar administrativo</p>
+            <div class="e4-conversacion active" onclick="cambiarChat('Lucia Ramos', 'Postulante a Asistente de atencion al cliente', this)">
+              <h4>Lucia Ramos</h4>
+              <p>Postulante a Asistente de atencion al cliente</p>
             </div>
 
-            <div class="e4-conversacion" onclick="cambiarChat('Miguel Ramos', 'Postulante a Practicante RR.HH.', this)">
-              <h4>Miguel Ramos</h4>
-              <p>Postulante a Practicante RR.HH.</p>
+            <div class="e4-conversacion" onclick="cambiarChat('Jose Mamani', 'Postulante a Mozo junior', this)">
+              <h4>Jose Mamani</h4>
+              <p>Postulante a Mozo junior</p>
             </div>
 
-            <div class="e4-conversacion" onclick="cambiarChat('Andrea Salazar', 'Consulta sobre horario', this)">
-              <h4>Andrea Salazar</h4>
-              <p>Consulta sobre horario</p>
+            <div class="e4-conversacion" onclick="cambiarChat('Camila Flores', 'Postulante a Asistente de tienda part-time', this)">
+              <h4>Camila Flores</h4>
+              <p>Postulante a Asistente de tienda part-time</p>
+            </div>
+
+            <div class="e4-conversacion" onclick="cambiarChat('Marco Huaman', 'Postulante a Auxiliar de almacen', this)">
+              <h4>Marco Huaman</h4>
+              <p>Postulante a Auxiliar de almacen</p>
+            </div>
+
+            <div class="e4-conversacion" onclick="cambiarChat('Valeria Cruz', 'Postulante a Recepcionista junior', this)">
+              <h4>Valeria Cruz</h4>
+              <p>Postulante a Recepcionista junior</p>
             </div>
           </aside>
 
           <article class="e4-chat">
             <div class="e4-chat-header">
               <div>
-                <h2 id="nombreChat">Lucía Torres</h2>
-                <p id="detalleChat">Postulante a Auxiliar administrativo</p>
+                <h2 id="nombreChat">Lucia Ramos</h2>
+                <p id="detalleChat">Postulante a Asistente de atencion al cliente</p>
               </div>
               <span class="e4-estado">Activa</span>
             </div>
 
             <div class="e4-historial" id="historialMensajes">
               <div class="e4-mensaje e4-postulante">
-                Buenas tardes, quisiera saber si la vacante sigue disponible.
+                Buenas tardes, vi la vacante de atencion al cliente y tengo disponibilidad inmediata.
               </div>
               <div class="e4-mensaje e4-empresa">
-                Buenas tardes, sí. La vacante sigue activa. ¿Tienes disponibilidad inmediata
+                Buenas tardes, tu perfil aparece como buen match por comunicacion y disponibilidad.
               </div>
               <div class="e4-mensaje e4-postulante">
-                Sí, puedo empezar esta semana.
+                Perfecto, puedo acercarme a entrevista esta semana.
               </div>
             </div>
 

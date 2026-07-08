@@ -1333,12 +1333,23 @@ td a {
 }
 
 .e4-conversacion h4 {
-  margin: 0 0 5px;
+  margin: 4px 0 5px;
 }
 
 .e4-conversacion p {
   margin: 0;
   font-size: 0.9rem;
+}
+
+.e4-conversacion small {
+  display: inline-flex;
+  width: fit-content;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: var(--blue);
+  background: #dbeafe;
+  font-size: 0.75rem;
+  font-weight: 800;
 }
 
 .e4-chat {
@@ -1383,6 +1394,23 @@ td a {
   align-self: flex-end;
   color: var(--blue-dark);
   background: #dbeafe;
+}
+
+.e4-mensaje.e4-nota {
+  align-self: center;
+  max-width: 86%;
+  color: #475467;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  font-size: 0.9rem;
+}
+
+.e4-mensaje span {
+  display: block;
+  margin-top: 8px;
+  color: #667085;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .e4-enviar {

@@ -12,18 +12,15 @@
 </head>
 <body class="dashboard-body">
   <aside class="sidebar" aria-label="Menu empresa">
-    <a class="brand sidebar-brand" href="../../index.html">
+    <a class="brand sidebar-brand" href="panel.html">
       <span class="brand-mark">WB</span>
       <span>WorkBridge</span>
     </a>
 
     <nav class="sidebar-nav">
       <a class="active" href="#panel">Panel general</a>
-      <a href="#postulantes">Postulantes</a>
-      <a href="#proceso">En proceso</a>
-      <a href="#contratados">Contratados</a>
       <a href="#vacantes">Vacantes</a>
-        <a href="../assistant/assistant.html">Asistente IA</a>
+      <a href="asistente_ia.html">Asistente IA</a>
       <a href="gestion_vacantes.html#vacantes">Publicar</a>
       <a href="gestion_vacantes.html#mensajes">Mensajes</a>
     </nav>
@@ -42,7 +39,6 @@
         <h1>Gestion de vacantes y talento joven</h1>
       </div>
       <div class="top-actions">
-        <a class="btn btn-secondary" href="../../index.html">Ver landing</a>
         <a class="btn btn-primary" href="gestion_vacantes.html#vacantes">Publicar vacante</a>
       </div>
     </header>
@@ -77,7 +73,7 @@
             <h2>Lista de postulantes</h2>
             <p>Perfiles resumidos con zona, horario y habilidades clave.</p>
           </div>
-          <input class="search-input" type="search" placeholder="Buscar candidato" aria-label="Buscar candidato">
+          <input class="search-input" type="search" placeholder="Buscar candidato" aria-label="Buscar candidato" data-candidate-search>
         </div>
 
         <div class="table-wrap">
@@ -92,40 +88,40 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-candidate="lucia">
                 <td><strong>Lucia Ramos</strong><span>21 anos - Atencion al cliente y ventas</span></td>
                 <td>Asistente de atencion al cliente</td>
                 <td>Lima Centro</td>
                 <td><span class="status new">Nuevo</span></td>
-                <td><a href="#detalle">Ver detalle</a></td>
+                <td><a href="#detalle" data-candidate-detail="lucia">Ver detalle</a></td>
               </tr>
-              <tr>
+              <tr data-candidate="jose">
                 <td><strong>Jose Mamani</strong><span>20 anos - Servicio al cliente</span></td>
                 <td>Mozo junior</td>
                 <td>SJL</td>
                 <td><span class="status process">En proceso</span></td>
-                <td><a href="#detalle">Ver detalle</a></td>
+                <td><a href="#detalle" data-candidate-detail="jose">Ver detalle</a></td>
               </tr>
-              <tr>
+              <tr data-candidate="camila">
                 <td><strong>Camila Flores</strong><span>22 anos - Caja, reposicion y orden</span></td>
                 <td>Asistente de tienda part-time</td>
                 <td>Ate</td>
                 <td><span class="status process">Entrevista</span></td>
-                <td><a href="#detalle">Ver detalle</a></td>
+                <td><a href="#detalle" data-candidate-detail="camila">Ver detalle</a></td>
               </tr>
-              <tr>
+              <tr data-candidate="marco">
                 <td><strong>Marco Huaman</strong><span>19 anos - Trabajo operativo</span></td>
                 <td>Auxiliar de almacen</td>
                 <td>La Molina</td>
                 <td><span class="status hired">Contratado</span></td>
-                <td><a href="#detalle">Ver detalle</a></td>
+                <td><a href="#detalle" data-candidate-detail="marco">Ver detalle</a></td>
               </tr>
-              <tr>
+              <tr data-candidate="valeria">
                 <td><strong>Valeria Cruz</strong><span>23 anos - Recepcion y trato al publico</span></td>
                 <td>Recepcionista junior</td>
                 <td>San Isidro</td>
                 <td><span class="status new">Nuevo</span></td>
-                <td><a href="#detalle">Ver detalle</a></td>
+                <td><a href="#detalle" data-candidate-detail="valeria">Ver detalle</a></td>
               </tr>
             </tbody>
           </table>
@@ -134,25 +130,25 @@
 
       <article class="dash-panel candidate-detail" id="detalle">
         <span class="section-kicker">Detalle integrado</span>
-        <div class="candidate-avatar">LR</div>
-        <h2>Lucia Ramos</h2>
-        <p>21 anos - Lima Centro - Disponible de lunes a sabado en horario completo.</p>
+        <div class="candidate-avatar" data-candidate-avatar>LR</div>
+        <h2 data-candidate-name>Lucia Ramos</h2>
+        <p data-candidate-summary>21 anos - Lima Centro - Disponible de lunes a sabado en horario completo.</p>
 
-        <div class="tag-row">
+        <div class="tag-row" data-candidate-tags>
           <span>Atencion al cliente</span>
           <span>Excel basico</span>
           <span>Comunicacion clara</span>
         </div>
 
         <dl class="candidate-data">
-          <div><dt>Postula a</dt><dd>Asistente de atencion al cliente</dd></div>
-          <div><dt>Match</dt><dd>91%</dd></div>
-          <div><dt>Ultimo estado</dt><dd>Nuevo postulante</dd></div>
+          <div><dt>Postula a</dt><dd data-candidate-job>Asistente de atencion al cliente</dd></div>
+          <div><dt>Match</dt><dd data-candidate-match>91%</dd></div>
+          <div><dt>Ultimo estado</dt><dd data-candidate-status>Nuevo postulante</dd></div>
         </dl>
 
         <div class="detail-actions">
-          <a class="btn btn-primary" href="https://wa.me/51999999999">Contactar WhatsApp</a>
-          <a class="btn btn-secondary" href="#proceso">Mover a proceso</a>
+          <a class="btn btn-primary" href="https://wa.me/51999999999" data-candidate-whatsapp>Contactar WhatsApp</a>
+          <button class="btn btn-secondary" type="button" data-move-process>Mover a proceso</button>
         </div>
       </article>
     </section>
@@ -245,5 +241,6 @@
       </div>
     </section>
   </main>
+  <script src="../../js/empresa/panel_empresa.js"></script>
 </body>
 </html>

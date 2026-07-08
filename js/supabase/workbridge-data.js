@@ -6,6 +6,7 @@
     rechazada: "Descartada",
     aceptada: "Contratado",
   };
+  let cachedVacantes = [];
 
   document.addEventListener("DOMContentLoaded", () => {
     renderVacantes();
@@ -33,6 +34,8 @@
 
     try {
       const vacantes = await getResource("vacantes");
+      cachedVacantes = vacantes;
+      bindJobFilters();
 
       if (counter) {
         counter.textContent = `${vacantes.length} empleos desde Supabase`;
@@ -43,13 +46,99 @@
         return;
       }
 
-      panel.innerHTML = vacantes.map(vacanteCard).join("");
+      renderFilteredVacantes();
     } catch (error) {
       if (counter) {
         counter.textContent = "Datos demo locales";
       }
+      cachedVacantes = getDemoVacantes();
+      bindJobFilters();
+      renderFilteredVacantes();
       console.warn(error);
     }
+  }
+
+  function bindJobFilters() {
+    const controls = document.querySelectorAll("[data-job-search], [data-job-district], [data-job-entry], [data-job-modality], [data-job-salary]");
+    const searchButton = document.querySelector("[data-job-search-button]");
+
+    controls.forEach((control) => {
+      if (control.dataset.filterBound) return;
+      const eventName = control.matches("input[type='search']") ? "input" : "change";
+      control.addEventListener(eventName, renderFilteredVacantes);
+      control.dataset.filterBound = "true";
+    });
+
+    if (searchButton && !searchButton.dataset.filterBound) {
+      searchButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        renderFilteredVacantes();
+      });
+      searchButton.dataset.filterBound = "true";
+    }
+  }
+
+  function renderFilteredVacantes() {
+    const panel = document.querySelector("[data-supabase-vacantes]");
+    const counter = document.querySelector("[data-supabase-vacantes-count]");
+    if (!panel) return;
+
+    const filters = getJobFilters();
+    const filtered = cachedVacantes.filter((vacante) => matchesJobFilters(vacante, filters));
+
+    if (counter) {
+      counter.textContent = `${filtered.length} de ${cachedVacantes.length} empleos`;
+    }
+
+    if (!filtered.length) {
+      panel.innerHTML = `
+        <article class="resultado-card" aria-live="polite">
+          <div class="resultado-info">
+            <strong>No hay empleos con estos filtros</strong>
+            <span>Prueba otro distrito, jornada o sueldo minimo.</span>
+          </div>
+        </article>
+      `;
+      return;
+    }
+
+    panel.innerHTML = filtered.map(vacanteCard).join("");
+  }
+
+  function getJobFilters() {
+    return {
+      text: normalize(document.querySelector("[data-job-search]")?.value || ""),
+      district: normalize(document.querySelector("[data-job-district]")?.value || ""),
+      entryOnly: Boolean(document.querySelector("[data-job-entry]")?.checked),
+      modalities: Array.from(document.querySelectorAll("[data-job-modality]:checked")).map((input) => normalize(input.value)),
+      minSalary: Number(document.querySelector("[data-job-salary]")?.value || 0),
+    };
+  }
+
+  function matchesJobFilters(vacante, filters) {
+    const empresa = vacante.empresas?.nombre || "";
+    const requisitos = Array.isArray(vacante.requisitos) ? vacante.requisitos.join(" ") : "";
+    const searchable = normalize(`${vacante.titulo} ${empresa} ${vacante.ubicacion} ${vacante.modalidad} ${vacante.salario} ${requisitos}`);
+
+    if (filters.text && !searchable.includes(filters.text)) return false;
+    if (filters.district && !normalize(vacante.ubicacion).includes(filters.district)) return false;
+    if (filters.modalities.length && !filters.modalities.includes(normalize(vacante.modalidad))) return false;
+    if (filters.entryOnly && !isEntryLevel(vacante)) return false;
+    if (filters.minSalary && getSalaryNumber(vacante.salario) < filters.minSalary) return false;
+
+    return true;
+  }
+
+  function isEntryLevel(vacante) {
+    const requisitos = Array.isArray(vacante.requisitos) ? vacante.requisitos.join(" ") : "";
+    const text = normalize(`${vacante.titulo} ${vacante.descripcion} ${requisitos}`);
+    return /sin experiencia|no requiere experiencia|no requerida|junior|asistente|auxiliar|mozo|recepcionista|practic/.test(text);
+  }
+
+  function getSalaryNumber(value = "") {
+    const matches = String(value).match(/\d[\d,.]*/g) || [];
+    const numbers = matches.map((item) => Number(item.replace(/[,.]/g, ""))).filter(Boolean);
+    return numbers.length ? Math.max(...numbers) : 0;
   }
 
   async function renderPostulaciones() {
@@ -324,7 +413,11 @@
   }
 
   function getDemoVacante(key = "") {
-    const vacantes = [
+    return getDemoVacantes().find((vacante) => key && (vacante.id === key || key.toLowerCase().includes(vacante.id.replace("demo-", "")))) || getDemoVacantes()[0];
+  }
+
+  function getDemoVacantes() {
+    return [
       {
         id: "demo-atencion",
         titulo: "Asistente de atencion al cliente",
@@ -391,8 +484,14 @@
         },
       },
     ];
+  }
 
-    return vacantes.find((vacante) => key && (vacante.id === key || key.toLowerCase().includes(vacante.id.replace("demo-", "")))) || vacantes[0];
+  function normalize(value = "") {
+    return String(value)
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
   }
 
   function escapeHtml(value) {

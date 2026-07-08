@@ -15,17 +15,15 @@
 <body class="e4-body">
   <div class="e4-layout">
     <aside class="e4-sidebar" aria-label="Menu de gestion de vacantes">
-      <a class="brand sidebar-brand" href="../../index.html">
+      <a class="brand sidebar-brand" href="panel.html">
         <span class="brand-mark">WB</span>
         <span>WorkBridge</span>
       </a>
 
       <nav class="e4-menu">
         <a class="e4-menu-link" href="panel.html">Panel general</a>
-        <a class="e4-menu-link" href="panel.html#postulantes">Postulantes</a>
-        <a class="e4-menu-link" href="panel.html#proceso">En proceso</a>
-        <a class="e4-menu-link" href="panel.html#contratados">Contratados</a>
         <a class="e4-menu-link" href="panel.html#vacantes">Vacantes</a>
+        <a class="e4-menu-link" href="asistente_ia.html">Asistente IA</a>
         <button class="active" onclick="mostrarSeccion('vacantes', this)">Publicar</button>
         <button onclick="mostrarSeccion('mensajes', this)">Mensajes</button>
       </nav>
@@ -207,28 +205,33 @@
             <h2>Conversaciones</h2>
 
             <div class="e4-conversacion active" onclick="cambiarChat('Lucia Ramos', 'Postulante a Asistente de atencion al cliente', this)">
+              <small>Nuevo match - 91%</small>
               <h4>Lucia Ramos</h4>
-              <p>Postulante a Asistente de atencion al cliente</p>
+              <p>Disponible para entrevista esta semana</p>
             </div>
 
             <div class="e4-conversacion" onclick="cambiarChat('Jose Mamani', 'Postulante a Mozo junior', this)">
+              <small>Entrevista pendiente</small>
               <h4>Jose Mamani</h4>
-              <p>Postulante a Mozo junior</p>
+              <p>Pregunta por turno tarde y fines de semana</p>
             </div>
 
             <div class="e4-conversacion" onclick="cambiarChat('Camila Flores', 'Postulante a Asistente de tienda part-time', this)">
+              <small>Respondio preguntas</small>
               <h4>Camila Flores</h4>
-              <p>Postulante a Asistente de tienda part-time</p>
+              <p>Confirma experiencia en caja escolar</p>
             </div>
 
             <div class="e4-conversacion" onclick="cambiarChat('Marco Huaman', 'Postulante a Auxiliar de almacen', this)">
+              <small>Contratado</small>
               <h4>Marco Huaman</h4>
-              <p>Postulante a Auxiliar de almacen</p>
+              <p>Falta coordinar documentos de ingreso</p>
             </div>
 
             <div class="e4-conversacion" onclick="cambiarChat('Valeria Cruz', 'Postulante a Recepcionista junior', this)">
+              <small>Nuevo perfil</small>
               <h4>Valeria Cruz</h4>
-              <p>Postulante a Recepcionista junior</p>
+              <p>Buen trato y disponibilidad de manana</p>
             </div>
           </aside>
 
@@ -242,14 +245,20 @@
             </div>
 
             <div class="e4-historial" id="historialMensajes">
+              <div class="e4-mensaje e4-nota">
+                Coincidencia alta por comunicacion clara, disponibilidad inmediata y zona cercana.
+              </div>
               <div class="e4-mensaje e4-postulante">
                 Buenas tardes, vi la vacante de atencion al cliente y tengo disponibilidad inmediata.
+                <span>Hoy 9:12 a.m.</span>
               </div>
               <div class="e4-mensaje e4-empresa">
                 Buenas tardes, tu perfil aparece como buen match por comunicacion y disponibilidad.
+                <span>Hoy 9:18 a.m.</span>
               </div>
               <div class="e4-mensaje e4-postulante">
                 Perfecto, puedo acercarme a entrevista esta semana.
+                <span>Hoy 9:25 a.m.</span>
               </div>
             </div>
 

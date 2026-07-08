@@ -1,0 +1,77 @@
+WORKBRIDGE - GUIA DE EXPOSICION
+Integrante: Edgar Valentino Rojas Gutierrez
+Epic inicial: E2 - Busqueda y filtros localizados
+Rol recomendado: explicar busqueda de empleos, cards, detalle y guardados.
+
+QUE DEBE ESTUDIAR
+1. Pagina Buscar empleos.
+2. Resultados cargados desde Supabase.
+3. Cards de vacantes con titulo, empresa, distrito, modalidad y sueldo.
+4. Detalle dinamico del empleo usando id en la URL.
+5. Guardar empleo y verlo en Mis guardados.
+6. Filtros visuales: distrito, experiencia, jornada y sueldo.
+
+ARCHIVOS Y LINEAS QUE DEBE REVISAR
+
+1. Busqueda de empleos
+   Archivo: pages/postulante/busqueda.html
+   Lineas importantes:
+   - 46: acceso a Mis guardados.
+   - 111: contador de empleos desde Supabase.
+   - 114: contenedor data-supabase-vacantes.
+   - 116-179: cards fallback si Supabase no carga.
+
+2. Hub de postulante con feed
+   Archivo: pages/postulante/hub_postulante.html
+   Lineas importantes:
+   - 113: contador de empleos.
+   - 116: contenedor de resultados.
+   - 118-181: cards fallback.
+
+3. Logica de vacantes desde Supabase
+   Archivo: js/supabase/workbridge-data.js
+   Lineas importantes:
+   - 17-18: funcion getResource llama a Netlify Function.
+   - 28-46: renderVacantes carga vacantes y las pinta.
+   - 193-201: HTML de cada card y boton Ver detalle.
+   - 327-395: vacantes fallback para demo local.
+
+4. Detalle del empleo
+   Archivo: pages/postulante/detalle_empleo.html
+   Lineas importantes:
+   - 43: contenedor data-supabase-detalle.
+   - 47-49: titulo y empresa.
+   - 55-67: sueldo, horario, jornada y experiencia.
+   - 73-76: descripcion y requisitos.
+   - 85-88: botones Postular ahora y Guardar empleo.
+   - 95-97: informacion de empresa.
+
+5. Logica de detalle
+   Archivo: js/supabase/workbridge-data.js
+   Lineas importantes:
+   - 103-119: lee id de URL y consulta detalleVacante.
+   - 146-155: llena titulo, empresa, sueldo, horario, jornada y descripcion.
+   - 157-162: pinta requisitos.
+   - 172-178: boton Guardar empleo.
+
+6. Mis guardados
+   Archivo: pages/postulante/guardados.html
+   Lineas importantes:
+   - 45: titulo Mis empleos guardados.
+   - 54: contador data-supabase-guardados-count.
+   - 57: contenedor data-supabase-guardados.
+
+   Archivo: js/supabase/workbridge-data.js
+   Lineas importantes:
+   - 79-97: renderGuardados carga guardados desde Supabase.
+   - 232-249: card de empleo guardado.
+
+QUE DEBE DECIR EN LA EXPOSICION
+"Mi epic fue E2, busqueda y filtros localizados. En la version final el postulante puede entrar a Buscar empleos, ver ofertas cargadas desde Supabase, revisar sueldo y ubicacion desde la card, abrir el detalle de cada empleo y guardarlo para revisarlo despues."
+
+TRABAJO EXTRA ASIGNADO
+- Practicar con las 5 vacantes demo.
+- Explicar que los filtros estan en la interfaz y la mejora futura es conectarlos a la consulta real de Supabase.
+- Saber decir que el detalle usa el parametro id en la URL.
+- Revisar que cada empleo tenga descripcion distinta antes de la demo.
+

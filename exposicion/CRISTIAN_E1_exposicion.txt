@@ -1,0 +1,80 @@
+WORKBRIDGE - GUIA DE EXPOSICION
+Integrante: Cristian Condori Apaza
+Epic inicial: E1 - Perfil digital y potencial academico
+Rol recomendado: explicar registro, login, creacion y edicion del perfil postulante.
+
+QUE DEBE ESTUDIAR
+1. Registro y login del postulante.
+2. Sesion demo guardada con localStorage.
+3. Creacion de perfil con avatar, biografia, distrito y habilidades.
+4. Vista final fija del perfil.
+5. Boton Editar para volver al formulario y actualizar datos.
+
+ARCHIVOS Y LINEAS QUE DEBE REVISAR
+
+1. Login y registro
+   Archivo: pages/auth/login.html
+   Que revisar:
+   - Formulario de inicio de sesion.
+   - Selector o flujo de rol.
+
+   Archivo: pages/auth/register.html
+   Que revisar:
+   - Formulario de registro.
+   - Datos iniciales del usuario.
+
+2. Logica de autenticacion demo
+   Archivo: js/auth/e1_auth.js
+   Lineas importantes:
+   - 4-30: crea usuarios demo en localStorage.
+   - 104-180: registro de usuario nuevo.
+   - 149-153: crea perfil inicial vacio para postulante.
+   - 177-180: guarda usuarios y sesion.
+   - 187: redirige a perfil_postulante.html despues del registro.
+   - 197-222: login y redireccion a perfil_vista.html.
+   - 233: cerrar sesion elimina wb_session.
+
+3. Formulario de edicion de perfil
+   Archivo: pages/profile/perfil_postulante.html
+   Lineas importantes:
+   - 55: formulario id form-perfil.
+   - 58-70: avatar y subida de foto.
+   - 76-77: campo biografia.
+   - 81-82: seleccion de distrito.
+   - 116: boton Guardar Cambios.
+   - 124: conecta el script e1_perfil.js.
+
+4. Logica del perfil
+   Archivo: js/profile/e1_perfil.js
+   Lineas importantes:
+   - 4-21: crea sesion demo si no hay usuario.
+   - 33-46: obtiene elementos del formulario.
+   - 49-57: carga perfil y habilidades existentes.
+   - 66-82: coloca los datos guardados en pantalla.
+   - 102-117: renderiza y elimina habilidades.
+   - 156-189: selecciona avatar o foto subida.
+   - 197-231: guarda perfil en localStorage y redirige a perfil_vista.html.
+
+5. Vista final del perfil
+   Archivo: pages/profile/perfil_vista.html
+   Lineas importantes:
+   - 38: texto que indica que es la vista final del perfil.
+   - 40: boton Editar.
+   - 44-48: avatar y biografia.
+   - 80: conecta perfil_vista.js.
+
+   Archivo: js/profile/perfil_vista.js
+   Lineas importantes:
+   - 3-8: muestra nombre, zona, biografia y distrito.
+   - 12-20: muestra avatar y habilidades.
+   - 25-42: crea perfil demo si no hay sesion.
+
+QUE DEBE DECIR EN LA EXPOSICION
+"Mi epic fue E1, enfocado en el perfil digital del postulante. En la version final el usuario puede registrarse, iniciar sesion, editar su perfil, elegir avatar o subir foto, agregar biografia, distrito y habilidades. Al guardar, se muestra una vista fija del perfil y desde ahi puede volver a editar."
+
+TRABAJO EXTRA ASIGNADO
+- Practicar el flujo completo: login o registro -> editar perfil -> guardar -> ver perfil final.
+- Preparar un ejemplo de perfil de Jose Mamani.
+- Saber explicar que localStorage se usa para simular sesion en la demo.
+- Saber ubicar rapidamente los archivos de perfil si el profesor pregunta.
+

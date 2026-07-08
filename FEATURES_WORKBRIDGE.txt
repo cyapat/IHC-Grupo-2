@@ -1,0 +1,141 @@
+WORKBRIDGE - FEATURES PRINCIPALES DEL PROYECTO
+
+1. Landing page
+- Presenta la propuesta de valor de WorkBridge.
+- Explica el problema de empleabilidad juvenil y la solucion propuesta.
+- Muestra secciones para postulantes, empresas, categorias de empleo y validacion.
+- Incluye llamadas a la accion para registrarse, buscar empleos y probar la IA.
+
+2. Autenticacion demo
+- Pantallas de login y registro para postulante y empresa.
+- Selector de rol: postulante o empresa.
+- Validacion basica de formularios.
+- Sesion demo guardada con localStorage.
+- Redireccion segun tipo de usuario.
+
+3. Perfil del postulante
+- Formulario para editar informacion del perfil.
+- Permite seleccionar avatar o subir foto.
+- Permite editar biografia, distrito y habilidades.
+- Guarda los cambios en localStorage.
+- Vista final fija del perfil del postulante.
+- Boton Editar para volver al formulario y actualizar los datos.
+
+4. Busqueda de empleos
+- Pagina de busqueda para postulantes.
+- Lista de empleos cargada desde Supabase.
+- Muestra titulo, empresa, distrito, modalidad, sueldo y requisito principal.
+- Cada empleo tiene enlace a detalle.
+- Incluye filtros visuales por distrito, experiencia, jornada y sueldo.
+
+5. Detalle de empleo
+- Pagina dinamica de detalle de vacante.
+- Lee el id del empleo desde la URL.
+- Consulta Supabase mediante Netlify Functions.
+- Muestra titulo, empresa, ubicacion, sueldo, jornada, horario, descripcion y requisitos.
+- Boton Guardar empleo.
+- Boton Postular ahora.
+
+6. Guardar empleo
+- El boton Guardar empleo registra la vacante en Supabase.
+- La pagina Mis guardados carga los empleos guardados desde Supabase.
+- Cada guardado muestra titulo, empresa, ubicacion, modalidad y sueldo.
+- Incluye boton para volver al detalle.
+
+7. Postulaciones
+- El boton Postular ahora registra una postulacion en Supabase.
+- La pagina Mis postulaciones carga postulaciones desde Supabase.
+- Muestra estado, fecha, vacante, empresa, modalidad, sueldo y mensaje.
+- Permite ver el seguimiento de postulacion.
+
+8. Seguimiento de postulacion
+- Pantalla para visualizar el avance de una postulacion.
+- Simula estados como enviada, vista, entrevista y resultado.
+- Sirve para demostrar el flujo posterior a postular.
+
+9. Panel de empresa
+- Panel general para empresa empleadora.
+- Muestra metricas de postulantes, vacantes, entrevistas y contratados.
+- Lista candidatos coherentes con las vacantes del demo.
+- Incluye detalle de candidato con habilidades, match y vacante.
+- Incluye tablero tipo Kanban con nuevos, en proceso y contratados.
+- Muestra vacantes activas alineadas al demo de Supabase.
+
+10. Gestion de vacantes de empresa
+- Formulario para publicar una nueva vacante.
+- Lista de vacantes publicadas con requisitos y preguntas de descarte.
+- Ejemplos coherentes con las 5 vacantes principales:
+  Asistente de atencion al cliente.
+  Asistente de tienda part-time.
+  Auxiliar de almacen.
+  Mozo junior.
+  Recepcionista junior.
+
+11. Mensajes empresa-postulante
+- Bandeja visual de conversaciones.
+- Conversaciones alineadas con postulantes y vacantes del demo.
+- Permite escribir mensajes en pantalla.
+- Flujo preparado para futura persistencia en Supabase.
+
+12. Asistente IA
+- Pagina de asistente con interfaz tipo chat.
+- Usa Netlify Functions para llamar a OpenAI.
+- La API key se guarda como variable de entorno en Netlify.
+- Puede ayudar a mejorar perfil, sugerir empleos, preparar entrevista y redactar vacantes.
+- Incluye prompts sugeridos para acelerar la demo.
+
+13. Supabase
+- Base de datos provisional en la nube.
+- Tablas principales:
+  usuarios.
+  perfiles_postulante.
+  empresas.
+  vacantes.
+  postulaciones.
+  guardados.
+  mensajes.
+- Scripts SQL incluidos en la carpeta supabase.
+- Vacantes demo mejoradas con empresas, descripciones, sueldos y requisitos distintos.
+
+14. Netlify
+- Proyecto desplegado en cloud.
+- Deploy automatico desde GitHub.
+- Netlify Functions para proteger llamadas a OpenAI y Supabase.
+- Variables de entorno usadas:
+  OPENAI_API_KEY.
+  SUPABASE_URL.
+  SUPABASE_PUBLISHABLE_KEY.
+
+15. GitHub y organizacion del codigo
+- Codigo versionado en GitHub.
+- Estructura separada por carpetas:
+  css.
+  js.
+  pages.
+  netlify/functions.
+  supabase.
+- HTML separado por modulos:
+  auth.
+  profile.
+  postulante.
+  empresa.
+  assistant.
+
+16. Flujo principal de demo
+- Empresa tiene vacantes publicadas.
+- Postulante busca empleos.
+- Postulante abre detalle.
+- Postulante guarda un empleo.
+- Postulante revisa Mis guardados.
+- Postulante postula a una vacante.
+- Postulante revisa Mis postulaciones.
+- Empresa revisa candidatos y vacantes en su panel.
+- Asistente IA apoya a postulante o empresa.
+
+17. Mejoras futuras recomendadas
+- Hacer filtros funcionales por distrito, jornada, sueldo y texto.
+- Guardar nuevas vacantes reales desde empresa en Supabase.
+- Leer postulaciones reales directamente en el panel empresa.
+- Cambiar estado de postulaciones desde el panel empresa.
+- Guardar mensajes reales en Supabase.
+- Integrar la IA con datos reales del perfil y vacantes.

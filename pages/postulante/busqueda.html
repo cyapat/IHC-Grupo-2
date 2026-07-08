@@ -49,8 +49,8 @@
     </header>
 
     <div class="busqueda-barra">
-      <input type="search" placeholder="Buscar por cargo, empresa o distrito..." aria-label="Buscar empleos">
-      <button class="btn btn-primary btn-large">Buscar</button>
+      <input type="search" placeholder="Buscar por cargo, empresa o distrito..." aria-label="Buscar empleos" data-job-search>
+      <button class="btn btn-primary btn-large" data-job-search-button>Buscar</button>
     </div>
 
     <div class="busqueda-grid">
@@ -60,7 +60,7 @@
 
         <div class="filtro-grupo">
           <p class="filtro-titulo">Distrito</p>
-          <select class="filtro-select" aria-label="Filtrar por distrito">
+          <select class="filtro-select" aria-label="Filtrar por distrito" data-job-district>
             <option value="">Todos los distritos</option>
             <option>Miraflores</option>
             <option>San Isidro</option>
@@ -76,31 +76,31 @@
         <div class="filtro-grupo">
           <p class="filtro-titulo">Experiencia</p>
           <label class="filtro-check">
-            <input type="checkbox"> Solo sin experiencia
+            <input type="checkbox" data-job-entry> Solo sin experiencia
           </label>
         </div>
 
         <div class="filtro-grupo">
           <p class="filtro-titulo">Jornada</p>
           <label class="filtro-check">
-            <input type="checkbox"> Tiempo completo
+            <input type="checkbox" value="Tiempo completo" data-job-modality> Tiempo completo
           </label>
           <label class="filtro-check">
-            <input type="checkbox"> Part-time
+            <input type="checkbox" value="Part-time" data-job-modality> Part-time
           </label>
           <label class="filtro-check">
-            <input type="checkbox"> Practicas
+            <input type="checkbox" value="Practicas" data-job-modality> Practicas
           </label>
         </div>
 
         <div class="filtro-grupo">
           <p class="filtro-titulo">Sueldo minimo</p>
-          <select class="filtro-select" aria-label="Filtrar por sueldo">
+          <select class="filtro-select" aria-label="Filtrar por sueldo" data-job-salary>
             <option value="">Cualquier sueldo</option>
-            <option>S/ 800 o mas</option>
-            <option>S/ 900 o mas</option>
-            <option>S/ 1,000 o mas</option>
-            <option>S/ 1,200 o mas</option>
+            <option value="800">S/ 800 o mas</option>
+            <option value="900">S/ 900 o mas</option>
+            <option value="1000">S/ 1,000 o mas</option>
+            <option value="1200">S/ 1,200 o mas</option>
           </select>
         </div>
       </aside>

@@ -4,12 +4,16 @@ const promptInput = document.getElementById("aiPrompt");
 const statusText = document.getElementById("aiStatus");
 const clearButton = document.getElementById("aiClear");
 const suggestionButtons = document.querySelectorAll("[data-prompt]");
+const assistantMode = document.body.dataset.assistantMode || "postulante";
+const assistantName = assistantMode === "empresa" ? "WorkBridge IA Empresa" : "WorkBridge IA";
 
 const messages = [
   {
     role: "system",
     content:
-      "Eres WorkBridge IA, asistente de una plataforma academica de empleos para jovenes de 18 a 25 anos en Lima. Responde siempre en espanol, de forma clara y breve. Ayuda con perfiles, CV, postulaciones, entrevistas, busqueda de empleos de entrada y redaccion de vacantes. Si preguntan algo fuera de WorkBridge, empleabilidad o gestion de vacantes, redirige con amabilidad al objetivo del proyecto."
+      assistantMode === "empresa"
+        ? "Eres WorkBridge IA Empresa, asistente para pymes de Lima que contratan jovenes de 18 a 25 anos. Responde siempre en espanol, de forma clara y breve. Ayuda a redactar vacantes, crear preguntas de descarte, evaluar candidatos sin experiencia, preparar mensajes de entrevista y mejorar procesos de seleccion. Si preguntan algo fuera de WorkBridge o reclutamiento, redirige con amabilidad al objetivo del proyecto."
+        : "Eres WorkBridge IA, asistente de una plataforma academica de empleos para jovenes de 18 a 25 anos en Lima. Responde siempre en espanol, de forma clara y breve. Ayuda con perfiles, CV, postulaciones, entrevistas y busqueda de empleos de entrada. Si preguntan algo fuera de WorkBridge o empleabilidad, redirige con amabilidad al objetivo del proyecto."
   }
 ];
 
@@ -57,7 +61,7 @@ form.addEventListener("submit", async (event) => {
   try {
     const reply = await askAssistant(text);
     messages.push({ role: "assistant", content: reply });
-    appendMessage("bot", "WorkBridge IA", reply);
+    appendMessage("bot", assistantName, reply);
     statusText.textContent = "";
   } catch (error) {
     statusText.textContent = error.message;

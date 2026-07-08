@@ -1,0 +1,64 @@
+WORKBRIDGE - GUIA DE EXPOSICION
+Integrante: Jose Fernando Requejo Chambilla
+Epic inicial: E4 - Registro de empresa y publicacion de vacantes
+Rol recomendado: explicar el lado empresa: panel, vacantes, postulantes y mensajes.
+
+QUE DEBE ESTUDIAR
+1. Panel general de empresa.
+2. Metricas de vacantes y postulantes.
+3. Lista de postulantes.
+4. Vacantes activas del demo.
+5. Gestion y publicacion visual de vacantes.
+6. Mensajes empresa-postulante.
+
+ARCHIVOS Y LINEAS QUE DEBE REVISAR
+
+1. Panel empresa
+   Archivo: pages/empresa/panel.html
+   Lineas importantes:
+   - 21-28: menu del panel empresa.
+   - 42-46: encabezado y boton Publicar vacante.
+   - 50-66: metricas del panel.
+   - 74-135: lista de postulantes.
+   - 135-150: detalle de candidato.
+   - 160-197: tablero kanban de candidatos.
+   - 205-243: vacantes activas.
+
+2. Gestion de vacantes
+   Archivo: pages/empresa/gestion_vacantes.html
+   Lineas importantes:
+   - 24-30: menu interno de empresa.
+   - 48-61: resumen de gestion.
+   - 67-123: formulario Publicar nueva vacante.
+   - 135-201: lista de vacantes demo.
+   - 204-257: mensajes empresa-postulante.
+   - 266: conecta e4_gestion_vacantes.js.
+
+3. Logica de publicar vacante visual
+   Archivo: js/empresa/e4_gestion_vacantes.js
+   Lineas importantes:
+   - 16-18: abre seccion de mensajes si la URL tiene #mensajes.
+   - 22-39: captura formulario y crea nueva card de vacante en pantalla.
+   - 42-68: HTML de la nueva vacante.
+   - 85-93: envia mensaje visual y lo agrega al historial.
+
+4. Redirecciones de empresa
+   Archivo: pages/empresa/publicar_vacante.html
+   Lineas importantes:
+   - 6: redirige a gestion_vacantes.html#vacantes.
+
+   Archivo: pages/empresa/mensajes.html
+   Lineas importantes:
+   - 6: redirige a gestion_vacantes.html#mensajes.
+   - 14-15: enlace manual para abrir mensajes.
+
+QUE DEBE DECIR EN LA EXPOSICION
+"Mi epic fue E4, enfocado en empresas. En la version final la empresa tiene un panel para revisar metricas, postulantes, proceso de seleccion, vacantes activas y acceso a publicar vacantes. Tambien existe una bandeja de mensajes para contactar al postulante. Esta parte esta preparada como demo frontend y la mejora futura es conectar la publicacion de nuevas vacantes y mensajes directamente con Supabase."
+
+TRABAJO EXTRA ASIGNADO
+- Estudiar los 5 empleos demo y que postulantes tienen sentido para cada uno.
+- Practicar el panel empresa sin leer.
+- Explicar con honestidad que publicar vacante agrega la card visualmente, pero no la guarda aun en Supabase.
+- Preparar una frase de mejora futura: conectar publicar vacante, mensajes y cambios de estado a Supabase.
+- Revisar que los candidatos del panel sean coherentes con las vacantes demo.
+

@@ -1,0 +1,67 @@
+WORKBRIDGE - GUIA DE EXPOSICION
+Integrante: David Angelo Zavala Arteaga
+Epic inicial: E3 - Postulacion y seguimiento
+Rol recomendado: explicar postular, mis postulaciones y seguimiento.
+
+QUE DEBE ESTUDIAR
+1. Boton Postular ahora desde el detalle del empleo.
+2. Registro de postulacion en Supabase.
+3. Pagina Mis postulaciones.
+4. Estados de postulacion.
+5. Pantalla de seguimiento con linea de tiempo.
+
+ARCHIVOS Y LINEAS QUE DEBE REVISAR
+
+1. Boton de postulacion
+   Archivo: pages/postulante/detalle_empleo.html
+   Lineas importantes:
+   - 85-88: botones Postular ahora y Guardar empleo.
+
+2. Logica del boton Postular
+   Archivo: js/supabase/workbridge-data.js
+   Lineas importantes:
+   - 162-168: configura el boton Postular ahora.
+   - 262-279: runVacanteAction envia la accion y cambia el texto del boton.
+
+3. Funcion Supabase para guardar postulacion
+   Archivo: netlify/functions/supabase.js
+   Lineas importantes:
+   - 77: valida vacanteId y action.
+   - 88-95: si action es postular usa tabla postulaciones y mensaje.
+   - 113: mensaje de error si no se pudo registrar la postulacion.
+
+4. Pagina Mis postulaciones
+   Archivo: pages/postulante/mis_postulaciones.html
+   Lineas importantes:
+   - 41: titulo Mis postulaciones.
+   - 50-69: resumen de metricas.
+   - 79: filtro visual de postulaciones.
+   - 88: contenedor data-supabase-postulaciones.
+
+5. Render de postulaciones
+   Archivo: js/supabase/workbridge-data.js
+   Lineas importantes:
+   - 55-73: renderPostulaciones carga la lista desde Supabase.
+   - 207-224: card de postulacion con estado, fecha, empresa y mensaje.
+
+6. Seguimiento de postulacion
+   Archivo: pages/postulante/status_postulacion.html
+   Lineas importantes:
+   - 45: volver a postulaciones.
+   - 127: recomendaciones para entrevista.
+   - Revisar visualmente toda la pagina porque muestra el avance de la postulacion.
+
+7. Tabla de postulaciones en Supabase
+   Archivo: supabase/schema.sql
+   Lineas importantes:
+   - 61: estado de postulacion con valores permitidos.
+
+QUE DEBE DECIR EN LA EXPOSICION
+"Mi epic fue E3, postulacion y seguimiento. En la version final el postulante puede abrir una vacante, presionar Postular ahora y la postulacion se registra en Supabase. Luego puede entrar a Mis postulaciones para ver el estado y revisar una pantalla de seguimiento."
+
+TRABAJO EXTRA ASIGNADO
+- Practicar el flujo: Detalle empleo -> Postular ahora -> Mis postulaciones -> Seguimiento.
+- Saber explicar el estado inicial enviada.
+- Si preguntan por preguntas de descarte, decir que quedan como mejora futura o extension del flujo.
+- Revisar que Supabase tenga al menos una postulacion antes de exponer.
+

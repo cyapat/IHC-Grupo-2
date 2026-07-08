@@ -1,0 +1,78 @@
+WORKBRIDGE - GUIA DE EXPOSICION
+Integrante: Patrick Anthony Leonardo Paniora
+Epic inicial: E5 - Gestion de candidatos, panel empresa y cierre tecnico
+Rol recomendado: abrir y cerrar la exposicion, explicar integracion tecnica y demo final.
+
+QUE DEBE ESTUDIAR
+1. Vision general de WorkBridge:
+   - Problema: jovenes de 18 a 25 anos sin experiencia tienen dificultad para conseguir primer empleo.
+   - Solucion: plataforma que conecta jovenes postulantes con pymes de Lima.
+   - Segmentos: postulantes y empresas.
+
+2. Version final desplegada:
+   - Landing page en Netlify.
+   - Web application desplegada en cloud.
+   - Datos conectados con Supabase.
+   - Asistente IA conectado con OpenAI desde Netlify Functions.
+
+3. Flujo completo para demo:
+   - Landing page.
+   - Perfil postulante.
+   - Buscar empleos.
+   - Ver detalle.
+   - Guardar empleo.
+   - Postular.
+   - Ver postulaciones.
+   - Panel empresa.
+   - Asistente IA.
+
+ARCHIVOS Y LINEAS QUE DEBE REVISAR
+
+1. README general del proyecto
+   Archivo: README.md
+   Lineas importantes:
+   - 11: menciona Supabase como base de datos provisional.
+   - 45-63: lista las paginas principales para el Capitulo V.
+   - 81-84: explica integracion IA y variable OPENAI_API_KEY.
+   - 87-93: explica Supabase y como se conecta con frontend.
+   - 108: explica netlify.toml y publicacion del proyecto.
+
+2. Configuracion Netlify
+   Archivo: netlify.toml
+   Lineas importantes:
+   - 4: define la carpeta de Netlify Functions.
+
+3. Funcion OpenAI
+   Archivo: netlify/functions/openai.js
+   Lineas importantes:
+   - 10-15: lee OPENAI_API_KEY desde Netlify.
+   - 40-48: llama a la API de OpenAI.
+   - 59-66: devuelve la respuesta generada al frontend.
+
+4. Funcion Supabase
+   Archivo: netlify/functions/supabase.js
+   Lineas importantes:
+   - 15-16: lee SUPABASE_URL y SUPABASE_PUBLISHABLE_KEY.
+   - 30-33: endpoints para vacantes, detalle, postulaciones y guardados.
+   - 41-43: consulta Supabase usando fetch.
+   - 88-95: decide si guardar empleo o registrar postulacion.
+
+5. Panel empresa
+   Archivo: pages/empresa/panel.html
+   Lineas importantes:
+   - 42-46: titulo del panel y boton para publicar vacante.
+   - 50-66: metricas principales.
+   - 74-135: lista de postulantes.
+   - 160-197: tablero kanban.
+   - 205-243: vacantes activas.
+
+QUE DEBE DECIR EN LA EXPOSICION
+"Mi rol fue integrar y cerrar el producto final. WorkBridge ya esta desplegado en Netlify, usa Supabase como base de datos provisional y tiene una funcion serverless para proteger las llamadas a OpenAI y Supabase. En la demo mostraremos el flujo completo: el postulante crea perfil, busca una vacante, guarda o postula, y la empresa revisa candidatos y vacantes desde su panel."
+
+TRABAJO EXTRA ASIGNADO
+- Confirmar antes de exponer que Netlify carga correctamente.
+- Confirmar que Supabase tiene las 5 vacantes demo.
+- Confirmar que la API de OpenAI tiene credito activo.
+- Tener listo el enlace de GitHub, Netlify y Supabase.
+- Explicar claramente que algunos flujos empresa son demo frontend y que la mejora futura es conectarlos totalmente a Supabase.
+

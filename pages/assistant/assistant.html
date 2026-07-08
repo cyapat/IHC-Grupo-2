@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css">
 </head>
-<body class="dashboard-body">
+<body class="dashboard-body" data-assistant-mode="postulante">
 
   <aside class="sidebar" aria-label="Menu WorkBridge IA">
     <a class="brand sidebar-brand" href="../../index.html">
@@ -23,7 +23,6 @@
       <a href="../postulante/hub_postulante.html">Buscar empleos</a>
       <a href="../postulante/mis_postulaciones.html">Mis postulaciones</a>
       <a class="active" href="assistant.html">Asistente IA</a>
-      <a href="../empresa/panel.html">Panel empresa</a>
       <a href="../auth/login.html">Salir</a>
     </nav>
 
@@ -38,11 +37,10 @@
     <header class="dashboard-top">
       <div>
         <h1>Asistente IA</h1>
-        <p>Recibe ayuda para mejorar perfiles, preparar postulaciones y redactar vacantes.</p>
+        <p>Recibe ayuda para mejorar tu perfil, preparar postulaciones y practicar entrevistas.</p>
       </div>
       <div class="top-actions">
         <a class="btn btn-secondary" href="../postulante/hub_postulante.html">Ver empleos</a>
-        <a class="btn btn-primary" href="../empresa/gestion_vacantes.html#vacantes">Crear vacante</a>
       </div>
     </header>
 
@@ -51,13 +49,13 @@
         <div class="ai-panel-head">
           <span class="badge cyan">OpenAI</span>
           <h2>WorkBridge IA</h2>
-          <p>Pregunta sobre perfil, entrevista, postulaciones o redaccion de vacantes.</p>
+          <p>Pregunta sobre perfil, entrevista, postulaciones o empleos de entrada.</p>
         </div>
 
         <div id="aiChat" class="ai-chat" aria-live="polite">
           <div class="ai-message ai-message-bot">
             <strong>WorkBridge IA</strong>
-            <p>Hola. Puedo ayudarte a mejorar tu perfil, sugerir empleos segun tus habilidades o redactar una vacante clara para jovenes postulantes.</p>
+            <p>Hola. Puedo ayudarte a mejorar tu perfil, sugerir empleos segun tus habilidades o practicar respuestas para una entrevista.</p>
           </div>
         </div>
 
@@ -77,7 +75,7 @@
         <button type="button" data-prompt="Mejora este resumen para mi perfil: soy estudiante, busco mi primer empleo y tengo disponibilidad part-time.">Mejorar perfil</button>
         <button type="button" data-prompt="Sugiere empleos de entrada para una persona sin experiencia que vive en Lima Norte.">Sugerir empleos</button>
         <button type="button" data-prompt="Prepara respuestas para una entrevista de asistente de tienda sin experiencia previa.">Preparar entrevista</button>
-        <button type="button" data-prompt="Redacta una vacante breve para contratar un mozo junior part-time en Miraflores.">Redactar vacante</button>
+        <button type="button" data-prompt="Dame tres formas de explicar que no tengo experiencia laboral pero si ganas de aprender.">Explicar experiencia</button>
       </aside>
     </section>
   </main>

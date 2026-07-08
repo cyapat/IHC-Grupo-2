@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Asistente de inteligencia artificial de WorkBridge para empresas empleadoras.">
+  <title>WorkBridge - Asistente IA Empresa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body class="dashboard-body" data-assistant-mode="empresa">
+
+  <aside class="sidebar" aria-label="Menu empresa">
+    <a class="brand sidebar-brand" href="panel.html">
+      <span class="brand-mark">WB</span>
+      <span>WorkBridge</span>
+    </a>
+
+    <nav class="sidebar-nav" aria-label="Navegacion empresa">
+      <a href="panel.html">Panel general</a>
+      <a href="panel.html#vacantes">Vacantes</a>
+      <a class="active" href="asistente_ia.html">Asistente IA</a>
+      <a href="gestion_vacantes.html#vacantes">Publicar</a>
+      <a href="gestion_vacantes.html#mensajes">Mensajes</a>
+    </nav>
+
+    <div class="sidebar-note">
+      <span>Empresa demo</span>
+      <strong>Comercial Andina</strong>
+      <small>Asistente para redactar y evaluar vacantes</small>
+    </div>
+  </aside>
+
+  <main class="dashboard-main">
+    <header class="dashboard-top">
+      <div>
+        <p class="eyebrow">Empresa empleadora</p>
+        <h1>Asistente IA Empresa</h1>
+        <p>Recibe ayuda para redactar vacantes, preparar preguntas y evaluar postulantes jovenes.</p>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-secondary" href="panel.html">Volver al panel</a>
+        <a class="btn btn-primary" href="gestion_vacantes.html#vacantes">Publicar vacante</a>
+      </div>
+    </header>
+
+    <section class="ai-layout" aria-label="Asistente de inteligencia artificial para empresa">
+      <article class="ai-panel">
+        <div class="ai-panel-head">
+          <span class="badge cyan">OpenAI</span>
+          <h2>WorkBridge IA Empresa</h2>
+          <p>Pregunta sobre redaccion de vacantes, filtros de candidatos o mensajes de entrevista.</p>
+        </div>
+
+        <div id="aiChat" class="ai-chat" aria-live="polite">
+          <div class="ai-message ai-message-bot">
+            <strong>WorkBridge IA Empresa</strong>
+            <p>Hola. Puedo ayudarte a redactar una vacante clara, preparar preguntas de descarte o escribir un mensaje profesional para contactar postulantes.</p>
+          </div>
+        </div>
+
+        <form id="aiForm" class="ai-form">
+          <label for="aiPrompt">Mensaje</label>
+          <textarea id="aiPrompt" rows="4" placeholder="Ejemplo: redacta una vacante para asistente de tienda part-time en Ate" required></textarea>
+          <div class="ai-actions">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+            <button class="btn btn-secondary" type="button" id="aiClear">Limpiar</button>
+          </div>
+          <p id="aiStatus" class="ai-status" role="status"></p>
+        </form>
+      </article>
+
+      <aside class="ai-suggestions" aria-label="Preguntas sugeridas para empresa">
+        <h2>Ideas rapidas</h2>
+        <button type="button" data-prompt="Redacta una vacante breve para asistente de atencion al cliente sin experiencia en Lima Centro.">Redactar vacante</button>
+        <button type="button" data-prompt="Crea 3 preguntas de descarte para una vacante part-time de tienda.">Preguntas filtro</button>
+        <button type="button" data-prompt="Escribe un mensaje amable para invitar a entrevista a un postulante joven.">Invitar entrevista</button>
+        <button type="button" data-prompt="Dame criterios simples para comparar candidatos sin experiencia laboral.">Evaluar candidatos</button>
+      </aside>
+    </section>
+  </main>
+
+  <script type="module" src="../../js/assistant/assistant.js"></script>
+</body>
+</html>
